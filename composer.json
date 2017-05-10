@@ -15,7 +15,7 @@
         "php": ">=7",
         "Illuminate/Support": "5.*",
         "Illuminate/Database": "5.*",
-        "maikealame/auto-where": "@dev"
+        "maikealame/auto-where": "dev-master"
     },
     "autoload": {
         "psr-4": {
