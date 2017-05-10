@@ -1,0 +1,27 @@
+{
+    "name": "maikealame/LaravelAutoWhere",
+    "description": "Laravel helper to automatically create sql where conditions",
+    "keywords": ["laravel","php","mysql","postgresql","automatic","where"],
+    "license": "MIT",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Maike Alame",
+            "email": "maike.alame@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7",
+        "Illuminate/Support": "5.*",
+        "Illuminate/Database": "5.*",
+        "maikealame/AutoWhere": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "maikealame\\AutoWhere\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
