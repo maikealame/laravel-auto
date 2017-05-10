@@ -15,13 +15,12 @@
         "php": ">=7",
         "Illuminate/Support": "5.*",
         "Illuminate/Database": "5.*",
-        "maikealame/AutoWhere": "*"
+        "maikealame/auto-where": "*"
     },
     "autoload": {
         "psr-4": {
             "maikealame\\AutoWhere\\": "src/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "minimum-stability": "dev"
 }
