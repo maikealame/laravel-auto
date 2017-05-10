@@ -5,6 +5,7 @@ namespace AutoWhere;
 use Illuminate\Support\Facades\DB;
 use AutoWhere\Contracts\AutoWhereInterface;
 use Illuminate\Support\Facades\Config;
+use PhpAutoWhere\Where;
 
 class Auto implements AutoWhereInterface
 {
