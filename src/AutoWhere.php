@@ -1,9 +1,9 @@
 <?php
 
-namespace MaikeAlame\AutoWhere;
+namespace AutoWhere;
 
 use Illuminate\Support\Facades\DB;
-use MaikeAlame\AutoWhere\Contracts\AutoWhereInterface;
+use AutoWhere\Contracts\AutoWhereInterface;
 
 class Auto implements AutoWhereInterface
 {

@@ -1,5 +1,5 @@
 <?php
-namespace MaikeAlame\AutoWhere\Contracts;
+namespace AutoWhere\Contracts;
 
 interface AutoWhereInterface
 {

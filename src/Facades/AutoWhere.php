@@ -1,12 +1,12 @@
 <?php
-namespace maikealame\AutoWhere\Facades;
+namespace AutoWhere\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Whatsapi extends Facade
+class Auto extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'maikealame\AutoWhere\Contracts\AutoWhereInterface';
+        return 'AutoWhere\Contracts\AutoWhereInterface';
     }
 }
