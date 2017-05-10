@@ -11,6 +11,7 @@ class Auto implements AutoWhereInterface
 {
     public $_core = "php";
     public $_class;
+    public $_config;
     public $_db;
     public $_dbtype;
 
@@ -19,7 +20,8 @@ class Auto implements AutoWhereInterface
      */
     public function __construct(){
         $this->_db = (new DB);
-        $this->_dbtype = Config::get("autowhere.db");
+        $this->_config = (object) Config::get("autowhere");
+        $this->_dbtype = $this->_config->db["type"];
     }
 
     /**
