@@ -1,14 +1,12 @@
 <?php
-namespace maikealame\AutoWhere\Contracts;
-
-use maikealame\AutoWhere\Auto as phpAuto;
+namespace MaikeAlame\AutoWhere\Contracts;
 
 interface AutoWhereInterface
 {
     /**
      * Returns the auto where class for chain usage
      *
-     * @return phpAuto
+     * @return mixed
      */
     public function where();
 }

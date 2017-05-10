@@ -3,13 +3,11 @@
 namespace MaikeAlame\AutoWhere;
 
 use Illuminate\Support\Facades\DB;
-use maikealame\AutoWhere\Auto as phpAuto;
-use maikealame\AutoWhere\Contracts\AutoWhereInterface;
+use MaikeAlame\AutoWhere\Contracts\AutoWhereInterface;
 
 class Auto implements AutoWhereInterface
 {
-
-    // instance for chain methods
+    public $_core = "php";
     public $_class;
     public $_db;
     public $_dbtype;
