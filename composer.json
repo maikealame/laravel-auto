@@ -21,6 +21,5 @@
         "psr-4": {
             "MaikeAlame\\AutoWhere\\": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
