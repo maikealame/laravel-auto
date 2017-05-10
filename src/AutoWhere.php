@@ -9,7 +9,7 @@ use PhpAutoWhere\Where;
 
 class Auto implements AutoWhereInterface
 {
-    public $_core = "php";
+    public $_core = "laravel";
     public $_class;
     public $_config;
     public $_db;
@@ -19,7 +19,7 @@ class Auto implements AutoWhereInterface
      * Create a new AutoWhere instance.
      */
     public function __construct(){
-        $this->_db = (new DB);
+        $this->_db = new AutoWhereDB();
         $this->_config = (object) Config::get("autowhere");
         $this->_dbtype = $this->_config->db["type"];
     }
