@@ -4,6 +4,7 @@ namespace AutoWhere;
 
 use Illuminate\Support\Facades\DB;
 use AutoWhere\Contracts\AutoWhereInterface;
+use Illuminate\Support\Facades\Config;
 
 class Auto implements AutoWhereInterface
 {
