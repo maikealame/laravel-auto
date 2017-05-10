@@ -12,12 +12,14 @@ class Auto implements AutoWhereInterface
     // instance for chain methods
     public $_class;
     public $_db;
+    public $_dbtype;
 
     /**
      * Create a new AutoWhere instance.
      */
     public function __construct(){
         $this->_db = (new DB);
+        $this->_dbtype = Config::get("autowhere.db");
     }
 
     /**

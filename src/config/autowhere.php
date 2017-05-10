@@ -2,6 +2,6 @@
 
 return [
 
-    'db' => env("DB_CONNECTION"), // only accept mysql and pgsql string
+    'db' => env("DB_CONNECTION","mysql"), // only accept mysql and pgsql string
 
 ];
