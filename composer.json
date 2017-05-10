@@ -1,5 +1,5 @@
 {
-    "name": "maikealame/LaravelAutoWhere",
+    "name": "maikealame/laravel-auto-where",
     "description": "Laravel helper to automatically create sql where conditions",
     "keywords": ["laravel","php","mysql","postgresql","automatic","where"],
     "license": "MIT",
