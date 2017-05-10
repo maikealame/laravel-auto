@@ -1,5 +1,5 @@
 <?php
-namespace Auto;
+namespace MaikeAlame\AutoWhere;
 
 use Illuminate\Support\ServiceProvider;
 

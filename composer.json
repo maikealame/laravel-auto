@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "maikealame\\AutoWhere\\": "src/"
+            "MaikeAlame\\AutoWhere\\": "src/"
         }
     },
     "minimum-stability": "dev"

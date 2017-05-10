@@ -1,6 +1,6 @@
 <?php
 
-namespace Auto;
+namespace MaikeAlame\AutoWhere;
 
 use Illuminate\Support\Facades\DB;
 use maikealame\AutoWhere\Auto as phpAuto;
