@@ -20,7 +20,7 @@ class AutoWhereServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $config_path = __DIR__ . '/../config/autowhere.php';
+        $config_path = __DIR__ . '/config/autowhere.php';
         $this->publishes([$config_path => config_path('autowhere.php')], 'autowhere');
 
         $this->registerBladeExtensions();
@@ -33,7 +33,7 @@ class AutoWhereServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $config_path = __DIR__ . '/../config/autowhere.php';
+        $config_path = __DIR__ . '/config/autowhere.php';
         $this->mergeConfigFrom($config_path, 'autowhere');
     }
 
