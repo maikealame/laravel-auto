@@ -35,6 +35,21 @@ class AutoWhereServiceProvider extends ServiceProvider
     {
         $config_path = __DIR__ . '/config/autowhere.php';
         $this->mergeConfigFrom($config_path, 'autowhere');
+
+        $this->registerAuto();
+    }
+
+    /**
+     * Register Autowhere Contract.
+     *
+     * @return void
+     */
+    private function registerAuto()
+    {
+        $this->app->singleton('\AutoWhere\Contracts\AutoWhereInterface', function ($app)
+        {
+            return new \AutoWhere\Auto();
+        });
     }
 
     /**
@@ -47,7 +62,7 @@ class AutoWhereServiceProvider extends ServiceProvider
         $blade = $this->app['view']->getEngineResolver()->resolve('blade')->getCompiler();
 
         $blade->directive('autowherescript', function ($expression) {
-            return "<?php echo \maikealame\AutoWhere::script(array ({$expression}));?>";
+            return "<?php echo \AutoWhere::script(array ({$expression}));?>";
         });
     }
 
