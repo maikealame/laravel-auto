@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/maikealame/laravel-auto.svg?style=flat-square)](https://packagist.org/packages/maikealame/laravel-auto)
 [![Build Status](https://travis-ci.org/maikealame/laravel-auto.svg?branch=master)](https://travis-ci.org/maikealame/laravel-auto)
 
-- Create automatically sql where conditions
+- Create automatically sql where conditions (mysql and postgresql support)
 - Create list filters functionality with flexible code for your own layout
 - Create sortable functionality with flexible code for your own layout
 - Create pagination to combine with this package methods
