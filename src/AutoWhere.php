@@ -24,11 +24,25 @@ class Auto implements AutoWhereInterface
         $this->_dbtype = $this->_config->db["type"];
     }
 
+
+
     /**
      * Initialize module Where
      */
     public function where(){
         $this->_class = new Where($this);
+        return $this->getInstance();
+    }
+
+    /**
+     * Set table by class
+     *
+     * @param $class
+     *
+     * @return Auto
+     */
+    public function class($class){
+        $this->_class->table( (new $class)->getTable() );
         return $this->getInstance();
     }
 
@@ -43,6 +57,12 @@ class Auto implements AutoWhereInterface
         return $this;
     }
 
+
+    /**
+     * Call functions in $_class or $this
+     *
+     * @return mixed
+     */
     public function __call($method,$arguments) {
         if($this->_class) {
             if (method_exists($this->_class, $method)) {
