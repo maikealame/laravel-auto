@@ -2,22 +2,42 @@
 
 return [
 
+    // where functions
+
     'db' => [
-        "type" => env("DB_CONNECTION","mysql"), // only accept mysql and pgsql string
+        /*
+        DB type for correct query syntax
+        note: only accept mysql and pgsql string
+        */
+        "type" => env("DB_CONNECTION","mysql"),
     ],
-    'app_date_format' =>       "d/m/Y",     // only support "d/m/Y" or "Y-m-d"
+    /*
+    date format used for this App
+    note: only support "d/m/Y" or "Y-m-d"
+    */
+    'app_date_format' =>       "d/m/Y",
+    /*
+    date format used for DB
+    note: only support "d/m/Y" or "Y-m-d"
+    */
     'db_date_format' =>        "d/m/Y",      // only support "d/m/Y" or "Y-m-d"
 
 
 
-    // blade pages function
+    // pages function
 
     'pages' => [
+        /*
+        combobox <select> options to divide pagination
+        */
         'length' => array(5,10,20,30,50,100),
+        /*
+        default length os combobox and query if not set HTTP GET Parameter
+        */
         'default_length' => 10
     ],
 
-    // blade sort function
+    // sort function
 
     'sort' => [
         /*
@@ -38,8 +58,8 @@ return [
             ],
         ],
         /*
-            defines icon set to use when sorted data is none above (alpha nor amount nor numeric)
-             */
+        defines icon set to use when sorted data is none above (alpha nor amount nor numeric)
+         */
         'default_icon_set' => 'fa fa-sort',
         /*
         icon that shows when generating sortable link while column is not sorted
