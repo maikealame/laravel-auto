@@ -13,7 +13,8 @@ return [
     // blade pages function
 
     'pages' => [
-        'length' => array(5,10,20,30,50,100)
+        'length' => array(5,10,20,30,50,100),
+        'default_length' => 10
     ],
 
     // blade sort function
