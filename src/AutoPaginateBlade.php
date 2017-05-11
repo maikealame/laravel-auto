@@ -44,11 +44,11 @@ class AutoPaginateBlade
             return $param[0]->appends(Request::except('page'))->render();
     }
 
-    public function length($param){
-        $lengths = Config::get("pages.length");
+    public static function length($param){
+        $lengths = Config::get("laravelauto.pages.length");
         $paginateObject = isset( $param[0] ) ? $param[0] : null;
         $length = Request::has("length") ? Request::get("length") : $lengths[0];
-        $total = $paginateObject ? $paginateObject->total : $lengths[count($lengths)];
+        $total = $paginateObject ? $paginateObject->total() : $lengths[count($lengths)];
         $r = '
         <select class="pagination-length">';
         if( !in_array($length,$lengths))
