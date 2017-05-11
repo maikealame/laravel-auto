@@ -86,6 +86,11 @@ class AutoServiceProvider extends ServiceProvider
             if ($expression[0] === '(') $expression = trim($expression, '()');
             return "<?php echo \Auto\AutoPaginateBlade::async(array ({$expression}));?>";
         });
+
+        $blade->directive('autopageslength', function ($expression) {
+            if ($expression[0] === '(') $expression = trim($expression, '()');
+            return "<?php echo \Auto\AutoPaginateBlade::length(array ({$expression}));?>";
+        });
     }
 
     /**
