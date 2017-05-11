@@ -3,8 +3,9 @@
 namespace AutoWhere;
 
 use Illuminate\Support\Facades\DB;
-use AutoWhere\Contracts\AutoWhereInterface;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Request;
+use AutoWhere\Contracts\AutoWhereInterface;
 use PhpAutoWhere\Where;
 
 class Auto implements AutoWhereInterface
@@ -47,7 +48,9 @@ class Auto implements AutoWhereInterface
     }
 
     public function get(){
-
+        $where = Request::get('filter') ? Request::get('filter') : [];
+        $columns = Request::get('columns') ? Request::get('columns') : [];
+        return $this->_class->columns($columns)->render($where);
     }
 
 
