@@ -20,8 +20,8 @@ class AutoServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $config_path = __DIR__ . '/config/autowhere.php';
-        $this->publishes([$config_path => config_path('autowhere.php')], 'autowhere');
+        $config_path = __DIR__ . '/config/laravelauto.php';
+        $this->publishes([$config_path => config_path('laravelauto.php')], 'config');
 
         $this->registerBladeExtensions();
     }
@@ -33,8 +33,8 @@ class AutoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $config_path = __DIR__ . '/config/autowhere.php';
-        $this->mergeConfigFrom($config_path, 'autowhere');
+        $config_path = __DIR__ . '/config/laravelauto.php';
+        $this->mergeConfigFrom($config_path, 'laravelauto');
 
         $this->registerAuto();
     }
