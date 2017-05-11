@@ -10,7 +10,7 @@ class AutoSortBlade
 {
 
     /**
-     * Create a new AutoWhereBlade instance.
+     * Create a new AutoSortBlade instance.
      */
     public function __construct(){
 

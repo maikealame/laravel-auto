@@ -10,7 +10,7 @@ class AutoPageBlade
 {
 
     /**
-     * Create a new AutoWhereBlade instance.
+     * Create a new AutoPageBlade instance.
      */
     public function __construct(){
 
@@ -22,16 +22,21 @@ class AutoPageBlade
      *
      */
     public static function async($param){
+        $selector = isset($param[0]) ? $param[0] : ".panel-table";
         $r = '<script>
         $(document).ready(function(){
             $(".pagination a").click(function(e){
                 e.preventDefault();
-                $.get($(this).attr("href"),{},function(data){
-                    $("html").replaceWith(data);
+                var url = $(this).attr("href");
+                $.get(url,{},function(data){
+                    $("body").find("'.$selector.'").replaceWith($(data).find("'.$selector.'"));
+                    var pagetitle = $(data).find("title").text() || $("title").text();
+                    window.history.pushState({"html":data,"pageTitle":pagetitle}, pagetitle, url);
                 });
             });
         });
         </script>';
+        return $r;
     }
 
 
