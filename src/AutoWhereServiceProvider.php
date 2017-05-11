@@ -61,8 +61,20 @@ class AutoWhereServiceProvider extends ServiceProvider
     {
         $blade = $this->app['view']->getEngineResolver()->resolve('blade')->getCompiler();
 
+
         $blade->directive('autowherescript', function ($expression) {
-            return "<?php echo \AutoWhere::script(array ({$expression}));?>";
+            if ($expression[0] === '(') $expression = trim($expression, '()');
+            return "<?php echo \AutoWhere\AutoWhereBlade::script(array ({$expression}));?>";
+        });
+
+        $blade->directive('autowherefilter', function ($expression) {
+            if ($expression[0] === '(') $expression = trim($expression, '()');
+            return "<?php echo \AutoWhere\AutoWhereBlade::filter(array ({$expression}));?>";
+        });
+
+        $blade->directive('autowheresort', function ($expression) {
+            if ($expression[0] === '(') $expression = trim($expression, '()');
+            return "<?php echo \AutoWhere\AutoWhereBlade::sort(array ({$expression}));?>";
         });
     }
 
