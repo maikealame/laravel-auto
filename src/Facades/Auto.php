@@ -1,5 +1,5 @@
 <?php
-namespace AutoWhere\Facades;
+namespace Auto\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

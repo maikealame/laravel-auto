@@ -1,9 +1,9 @@
 <?php
-namespace AutoWhere;
+namespace Auto;
 
 use Illuminate\Support\Facades\DB;
 
-class AutoWhereDB
+class AutoDB
 {
     function __construct(){
 

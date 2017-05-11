@@ -1,9 +1,9 @@
 <?php
-namespace AutoWhere;
+namespace Auto;
 
 use Illuminate\Support\ServiceProvider;
 
-class AutoWhereServiceProvider extends ServiceProvider
+class AutoServiceProvider extends ServiceProvider
 {
     
     /**
@@ -64,17 +64,27 @@ class AutoWhereServiceProvider extends ServiceProvider
 
         $blade->directive('autowherescript', function ($expression) {
             if ($expression[0] === '(') $expression = trim($expression, '()');
-            return "<?php echo \AutoWhere\AutoWhereBlade::script(array ({$expression}));?>";
+            return "<?php echo \Auto\AutoWhereBlade::script(array ({$expression}));?>";
         });
 
         $blade->directive('autowherefilter', function ($expression) {
             if ($expression[0] === '(') $expression = trim($expression, '()');
-            return "<?php echo \AutoWhere\AutoWhereBlade::filter(array ({$expression}));?>";
+            return "<?php echo \Auto\AutoWhereBlade::filter(array ({$expression}));?>";
         });
 
-        $blade->directive('autowheresort', function ($expression) {
+        $blade->directive('autosort', function ($expression) {
             if ($expression[0] === '(') $expression = trim($expression, '()');
-            return "<?php echo \AutoWhere\AutoWhereBlade::sort(array ({$expression}));?>";
+            return "<?php echo \Auto\AutoSortBlade::sort(array ({$expression}));?>";
+        });
+
+        $blade->directive('autopages', function ($expression) {
+            if ($expression[0] === '(') $expression = trim($expression, '()');
+            return "<?php echo \Auto\AutoPageBlade::pages(array ({$expression}));?>";
+        });
+
+        $blade->directive('autopagesasync', function ($expression) {
+            if ($expression[0] === '(') $expression = trim($expression, '()');
+            return "<?php echo \Auto\AutoPageBlade::async(array ({$expression}));?>";
         });
     }
 

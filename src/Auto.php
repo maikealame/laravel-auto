@@ -1,11 +1,11 @@
 <?php
 
-namespace AutoWhere;
+namespace Auto;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
-use AutoWhere\Contracts\AutoWhereInterface;
+use Auto\Contracts\AutoWhereInterface;
 use PhpAutoWhere\Where;
 
 class Auto implements AutoWhereInterface
@@ -20,7 +20,7 @@ class Auto implements AutoWhereInterface
      * Create a new AutoWhere instance.
      */
     public function __construct(){
-        $this->_db = new AutoWhereDB();
+        $this->_db = new AutoDB();
         $this->_config = (object) Config::get("autowhere");
         $this->_dbtype = $this->_config->db["type"];
     }
@@ -47,11 +47,19 @@ class Auto implements AutoWhereInterface
         return $this->getInstance();
     }
 
+    /**
+     * get quickly where sql without params
+     *
+     * @return string
+     */
     public function get(){
         $where = Request::get('filter') ? Request::get('filter') : [];
         $columns = Request::get('columns') ? Request::get('columns') : [];
         return $this->_class->columns($columns)->render($where);
     }
+
+
+
 
 
     /**

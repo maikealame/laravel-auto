@@ -1,7 +1,7 @@
 <?php
-namespace AutoWhere\Contracts;
+namespace Auto\Contracts;
 
-interface AutoWhereInterface
+interface AutoInterface
 {
     /**
      * Returns the auto where class for chain usage
