@@ -57,6 +57,30 @@ trait AutoWhere
             $autowhere->columns($options["columns"]);
         }
 
+        // fix error of soft Delete -> column deleted_at not found
+        if( $this->forceDeleting !== null ){ // is using soft delete
+            if( empty( array_filter( // not using withTrashed()
+                $query->removedScopes(),
+                function($var){
+                    return stristr( $var, "SoftDelet" ) ? $key : false;
+                }
+            ) ) ) {
+                if ($this->getTableOrAlias($qb) != $this->getTable()) // table not equal table, maybe "table as t"
+                    $query = $query->withTrashed()->where($this->getTableOrAlias($qb) . ".deleted_at");
+            }
+        }
+
         return $query->whereRaw( $autowhere->get() );
+    }
+
+
+    private function getTableOrAlias($qb){
+        if( strpos($qb->from, " as ") !== false ){
+            // Has Alias
+            return explode( " as ", $qb->from )[1];
+        }else {
+            // Hasn't Alias
+            return $qb->from;
+        }
     }
 }
