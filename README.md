@@ -21,3 +21,6 @@ To work all modules, it's necessary the following dependencies:
 - Bootstrap
 - Jquery
 
+## Wiki ?
+
+Soon...
