@@ -15,16 +15,15 @@ trait AutoWhere
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    public function scopeAutoWhere($query, $where = [])
+    public function scopeAutoWhere($query, $options = [])
     {
-        //dd(Auto::where()->table(["t"=>"ticket"])->get());
+        // Alias options
         $autowhere = Auto::where();
         $qb = $query->getQuery();
-        $alias = false;
         $table = [];
         if( is_array( $qb->joins ) ){
             foreach ($qb->joins as $join){
-                if( strpos(" as ",$join->table) >= 0 ){
+                if( strpos($join->table, " as ") !== false ){
                     // Has Alias
                     $table[explode( " as ", $join->table )[1]] = explode( " as ", $join->table )[0];
                 }else{
@@ -32,7 +31,7 @@ trait AutoWhere
                 }
             }
         }
-        if( strpos(" as ",$qb->from) >= 0 ){
+        if( strpos($qb->from, " as ") !== false ){
             // Has Alias
             $table[explode( " as ", $qb->from )[1]] = explode( " as ", $qb->from )[0];
         }else{
@@ -44,6 +43,20 @@ trait AutoWhere
         }
         $autowhere->table($table);
 //        dd( $table );
+
+
+        // Or options
+
+        if(isset($options["or"])){
+            $autowhere->or($options["or"]);
+        }
+
+        // Columns options
+
+        if(isset($options["columns"])){
+            $autowhere->columns($options["columns"]);
+        }
+
         return $query->whereRaw( $autowhere->get() );
     }
 }
