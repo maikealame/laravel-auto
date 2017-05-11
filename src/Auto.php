@@ -5,10 +5,10 @@ namespace Auto;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
-use Auto\Contracts\AutoWhereInterface;
+use Auto\Contracts\AutoInterface;
 use PhpAutoWhere\Where;
 
-class Auto implements AutoWhereInterface
+class Auto implements AutoInterface
 {
     public $_core = "laravel";
     public $_class;

@@ -5,7 +5,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AutoServiceProvider extends ServiceProvider
 {
-    
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -46,9 +46,9 @@ class AutoServiceProvider extends ServiceProvider
      */
     private function registerAuto()
     {
-        $this->app->singleton('\AutoWhere\Contracts\AutoWhereInterface', function ($app)
+        $this->app->singleton('\Auto\Contracts\AutoInterface', function ($app)
         {
-            return new \AutoWhere\Auto();
+            return new \Auto\Auto();
         });
     }
 
@@ -95,7 +95,7 @@ class AutoServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['maikealame\autoWhere\Contracts\AutoWhereInterface'];
+        return ['maikealame\laravel-auto\Contracts\AutoInterface'];
     }
 
 }
