@@ -52,7 +52,7 @@ class AutoPaginateBlade
         $r = '
         <select class="pagination-length">';
         if( !in_array($length,$lengths))
-            $r .= '<option value="{{$length}}" selected>{{$length}}</option>';
+            $r .= '<option value="'.$length.'" selected>'.$length.'</option>';
 
         foreach($lengths as $l) {
             $checked = $length == $l ? "selected" : null;
