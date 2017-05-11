@@ -1,7 +1,7 @@
 {
-    "name": "maikealame/laravel-auto-where",
-    "description": "Laravel helper to automatically create sql where conditions",
-    "keywords": ["laravel","php","mysql","postgresql","automatic","where"],
+    "name": "maikealame/laravel-auto",
+    "description": "Laravel helper to make almost everything for your project",
+    "keywords": ["laravel","php","mysql","postgresql","automatic","where","sort","pagination","list"],
     "license": "MIT",
     "type": "package",
     "authors": [
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AutoWhere\\": "src/"
+            "Auto\\": "src/"
         }
     },
     "minimum-stability": "dev"
