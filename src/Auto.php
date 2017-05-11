@@ -21,7 +21,7 @@ class Auto implements AutoInterface
      */
     public function __construct(){
         $this->_db = new AutoDB();
-        $this->_config = (object) Config::get("autowhere");
+        $this->_config = (object) Config::get("laravelauto");
         $this->_dbtype = $this->_config->db["type"];
     }
 
