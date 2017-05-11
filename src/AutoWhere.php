@@ -46,6 +46,9 @@ class Auto implements AutoWhereInterface
         return $this->getInstance();
     }
 
+    public function get(){
+
+    }
 
 
     /**
