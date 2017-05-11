@@ -45,5 +45,35 @@ class AutoPageBlade
             return $param[0]->appends(Request::except('page'))->render();
     }
 
+    public function length($param){
+        $lengths = Config::get("pages.length");
+        $paginateObject = isset( $param[0] ) ? $param[0] : null;
+        $length = Request::has("length") ? Request::get("length") : $lengths[0];
+        $total = $paginateObject ? $paginateObject->total : $lengths[count($lengths)];
+        $r = '
+        <select class="pagination-length">';
+        if( !in_array($length,$lengths))
+            $r .= '<option value="{{$length}}" selected>{{$length}}</option>';
+
+        foreach($lengths as $l) {
+            $checked = $length == $l ? "selected" : null;
+            if ($total >= $l)
+                $r .= '<option value = "'.$l.'" '.$checked.'>
+                '.$l.'
+                </option >';
+        }
+
+        $r .= '</select>
+        <script>
+            $(".pagination-length").change(function(){
+                var p = getUrlParameters();
+                delete p["page"];
+                p.length = $(this).val();
+                window.location.href = window.location.href.split("?")[0] + "?" + $.param( p );
+            });
+        </script>';
+        return $r;
+    }
+
 
 }
