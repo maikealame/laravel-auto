@@ -79,12 +79,12 @@ class AutoServiceProvider extends ServiceProvider
 
         $blade->directive('autopages', function ($expression) {
             if ($expression[0] === '(') $expression = trim($expression, '()');
-            return "<?php echo \Auto\AutoPageBlade::pages(array ({$expression}));?>";
+            return "<?php echo \Auto\AutoPaginateBlade::pages(array ({$expression}));?>";
         });
 
         $blade->directive('autopagesasync', function ($expression) {
             if ($expression[0] === '(') $expression = trim($expression, '()');
-            return "<?php echo \Auto\AutoPageBlade::async(array ({$expression}));?>";
+            return "<?php echo \Auto\AutoPaginateBlade::async(array ({$expression}));?>";
         });
     }
 
