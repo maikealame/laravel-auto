@@ -21,14 +21,18 @@ class AutoPaginateBlade
      *
      */
     public static function async($param){
-        $selector = isset($param[0]) ? $param[0] : ".panel-table";
+        $selector = isset($param) ? $param : [".panel-table"];
+        $replace = "";
+        foreach($selector as $s) {
+            $replace .= '$("body") . find("'.$s.'") . replaceWith($(data) . find("'.$s.'"));';
+        }
         $r = '<script>
         $(document).ready(function(){
             $("body").on("click",".pagination a",function(e){
                 e.preventDefault();
                 var url = $(this).attr("href");
                 $.get(url,{},function(data){
-                    $("body").find("'.$selector.'").replaceWith($(data).find("'.$selector.'"));
+                    '.$replace.'
                     var pagetitle = $(data).find("title").text() || $("title").text();
                     window.history.pushState({"html":data,"pageTitle":pagetitle}, pagetitle, url);
                 });
@@ -64,8 +68,66 @@ class AutoPaginateBlade
 
         $r .= '</select>
         <script>
+            function function lengthGetUrlParameters() {
+                var re = /([^&=]+)=?([^&]*)/g;
+                var decode = function (str) {
+                    return decodeURIComponent(str.replace(/\+/g, \' \'));
+                };
+                function createElement(params, key, value) {
+                    key = key + \'\';
+            
+                    if (key.indexOf(\'[\') !== -1) {
+                        var list = key.split(\'[\');
+                        key = list[0];
+                        var list = list[1].split(\']\');
+                        var index = list[0]
+                        if (index == \'\') { // key[]
+                            if (!params) params = {};
+                            if (!params[key] || !$.isArray(params[key])) params[key] = new Array();
+                            params[key].push(value);
+                        } else // key[value]
+                        {
+                            if (!params) params = {};
+                            if (!params[key] || !$.isPlainObject(params[key])) params[key] = {};
+                            params[key][index] = value;
+                        }
+                    } else
+                    if (key.indexOf(\'.\') !== -1) {
+                        var list = key.split(\'.\');
+                        var new_key = key.split(/\.(.+)?/)[1];
+                        if (!params[list[0]]) params[list[0]] = {};
+                        if (new_key !== \'\') {
+                            createElement(params[list[0]], new_key, value);
+                        } else console.warn(\'parseParams :: empty property in key "\' + key + \'"\');
+                    } else
+                    {
+                        if (!params) params = {};
+                        params[key] = value;
+                    }
+                }
+                query = window.location + \'\';
+                var params = {}, e;
+                if (query) {
+                    if (query.indexOf(\'#\') !== -1) {
+                        query = query.substr(0, query.indexOf(\'#\'));
+                    }
+                    if (query.indexOf(\'?\') !== -1) {
+                        query = query.substr(query.indexOf(\'?\') + 1, query.length);
+                    } else return {};
+            
+                    if (query == \'\') return {};
+                    while (e = re.exec(query)) {
+                        var key = decode(e[1]);
+                        var value = decode(e[2]);
+                        console.log(key);
+                        console.log(value);
+                        createElement(params, key, value);
+                    }
+                }
+                return params;
+            }
             $(".pagination-length").change(function(){
-                var p = getUrlParameters();
+                var p = lengthGetUrlParameters();
                 delete p["page"];
                 p.length = $(this).val();
                 window.location.href = window.location.href.split("?")[0] + "?" + $.param( p );
