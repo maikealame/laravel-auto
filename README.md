@@ -299,6 +299,10 @@ Check the [`composer.json`]
 $ php artisan vendor:publish --provider="Auto\AutoServiceProvider" --tag="config"
 ```
 
+See file in `config/laravelauto.php`
+
+---
+
 Now we done, take a coffe and start code.
 
 **Any feedback it's welcome, issues are here for it.**
