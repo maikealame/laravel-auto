@@ -1,6 +1,7 @@
 <?php
 namespace Auto;
 
+use Illuminate\Support\Facades\Request;
 use Auto\Exceptions\AutoWhereException;
 use Auto\Facades\Auto;
 
@@ -61,12 +62,15 @@ trait AutoWhere
         if( $this->forceDeleting !== null ){ // is using soft delete
             if( empty( array_filter( // not using withTrashed()
                 $query->removedScopes(),
-                function($var){
+                function($var,$key){
                     return stristr( $var, "SoftDelet" ) ? $key : false;
                 }
             ) ) ) {
                 if ($this->getTableOrAlias($qb) != $this->getTable()) // table not equal table, maybe "table as t"
-                    $query = $query->withTrashed()->where($this->getTableOrAlias($qb) . ".deleted_at");
+                    if(Request::has("show_disabled")){
+                        $query = $query->withTrashed();
+                    }else
+                        $query = $query->withTrashed()->where($this->getTableOrAlias($qb) . ".deleted_at");
             }
         }
 
