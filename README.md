@@ -192,7 +192,7 @@ class TestsController extends Controller
 }
 ```
 
-Ok, where autoWhere, autoSort and autoPaginate come from ? See [model] section to understand.
+Ok, where `autoWhere`, `autoSort` and `autoPaginate` come from ? See [**Model**] section to understand.
 It's very simple and light for yout code, even I don't believe.
 
 ### [Model]
@@ -218,7 +218,7 @@ Just using traits, We manipulate the QueryBuilder until we get the expected resu
 
 Now the times arrived. check out:
 
-.1 Download package with Composer
+1. Download package with Composer
 
 ```
 $ composer require maikealame/laravel-auto
@@ -233,7 +233,7 @@ Check the [`composer.json`]
 }
 ```
 
-.2 Add this package to your application service providers in `config/app.php`
+2. Add this package to your application service providers in `config/app.php`
 
 ```
 'providers' => [
@@ -247,7 +247,7 @@ Check the [`composer.json`]
 ],
 ```
 
-.3 Publish the package configuration file to your application.
+3. Publish the package configuration file to your application.
 
 ```
 $ php artisan vendor:publish --provider="Auto\AutoServiceProvider" --tag="config"
