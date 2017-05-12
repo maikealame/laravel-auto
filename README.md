@@ -12,7 +12,7 @@ a Laravel helper package to make all or almost everything for your projects
 - Create pagination to combine with this package methods
 - Create list length combobox
 
-Want more ? send feedback and we increase this package with more magics.
+*Want more ? send feedback and we increase this package with more magics.*
 
 ## What it do ?
 
