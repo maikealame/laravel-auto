@@ -1,5 +1,5 @@
 # LaravelAuto
-**[ in developing yet ]** a Laravel helper package to make all or almost everything for your projects
+a Laravel helper package to make all or almost everything for your projects
 
 [![Latest Version](https://img.shields.io/github/release/maikealame/laravel-auto.svg?style=flat-square)](https://github.com/maikealame/laravel-auto/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -11,6 +11,52 @@
 - Create sortable functionality with flexible code for your own layout
 - Create pagination to combine with this package methods
 - Create list length combobox
+
+Want more ? send feedback and we increase this package with more magics.
+
+## What it do ?
+
+List your tables with this light code:
+
+`$users = \App\User::autoWhere()->autoSort()->autoPaginate();`
+
+And what this autoWhere do ?
+
+- if url is ***http://localhost/usuarios?filter[age]=>20*** the query will be:
+
+`select * from users where age > 20;`
+
+- if url is ***http://localhost/usuarios?filter[name]=Maike*** the query will be:
+
+`select * from users where UPPER(name) LIKE '%MAIKE%' ;`
+
+- if url is ***http://localhost/usuarios?filter[name]=Maike&columns[name]=equal*** the query will be:
+
+`select * from users where name = 'Maike' ;`
+
+- if url is ***http://localhost/usuarios?filter[birth]=12/12/1990*** the query will be:
+
+`select * from users where birth >= '1990-12-12' and t.start <= '1990-12-12' ;`
+
+- if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|%2A*** the query will be: ( %2A = * )
+
+`select * from users where birth >= '1990-12-12' ;`
+
+- if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|12,12,2000*** the query will be:
+
+`select * from users where birth between '1990-12-12' AND '2000-12-12' ;`
+
+- if url is ***http://localhost/usuarios?filter[birth]=1&columns[birth]=null*** the query will be:
+
+`select * from users where birth IS NULL;`
+
+- if url is ***http://localhost/usuarios?filter[birth]=&columns[birth]=null*** the query will be:
+
+`select * from users where birth IS NOT NULL;`
+
+
+**Seriosly, don't worry with type of column and sql syntax, this will automate your querys with fresh and clean code.**
+
 
 ## What is necessary ?
 
@@ -184,7 +230,7 @@ class TestsController extends Controller
                 'p.name as portfolio'
             )
             ->leftJoin('portfolio as p', 't.portfolio_id', '=', 'p.id')
-            ->autoWhere()
+            ->autoWhere([ 'columns' =>[ "p.name" => "equal" ] ]) // you can pass param here and overwrite the type of column to other
             ->autoSort()
             ->autoPaginate();
         return view("tests.ticket_alias", compact("tickets"));
