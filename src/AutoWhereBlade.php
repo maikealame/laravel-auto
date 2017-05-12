@@ -48,7 +48,8 @@ class AutoWhereBlade
      * Create <script> js for use auto filter get HTTP params
      */
     public static function script($param){
-        $btn = isset($param[0]) ? $param[0] : ".table_filter";
+        $btn = isset($param[0]) ? $param[0] : ".btn_filter";
+        $inputs = isset($param[1]) ? $param[1] : ".input_filter";
         $script = '<script>
         function getUrlParameters() {
             var re = /([^&=]+)=?([^&]*)/g;
@@ -116,13 +117,12 @@ class AutoWhereBlade
         function table_filter(btn){
             var tr = btn.closest("tr");
             var data = {};
-            $(tr).find("th,td").each(function(i,e){
-                var t = $(e).find(" input, select, > textarea, .live-search").not("[type=hidden]").not("'.$btn.'");
-                if(t.length)
-                    if(t.val() != ""){
-                        var name = t.attr("data-name") ? t.attr("data-name") : t.attr("name");
-                        if(t.attr("data-type")) data[name] = {"type" :  t.attr("data-type"), "value" : t.val()};
-                        else data[name] = t.val();
+            $("'.$inputs.'").each(function(i,e){
+                if($(e).length)
+                    if($(e).val() != ""){
+                        var name = $(e).attr("data-name") ? $(e).attr("data-name") : $(e).attr("name");
+                        if($(e).attr("data-type")) data[name] = {"type" :  $(e).attr("data-type"), "value" : $(e).val()};
+                        else data[name] = $(e).val();
                     }
             });
             var p = getUrlParameters();
