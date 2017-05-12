@@ -26,18 +26,17 @@ class AutoWhereBlade
     public static function filter($param){
         $field = isset($param[0]) ? $param[0] : null;
         $value = isset($param[1]) ? $param[1] : null;
-        $option = isset($param[2]) ? $param[2] : null;
+        $option = isset($param[2]) ? $param[2] : "selected";
         $getvalue = isset(Request::get('filter')[$field]) ? Request::get('filter')[$field] : "";
         if($value == null) {
-            // 1
+            if(is_array($getvalue))
+                return implode("|",$getvalue);
             return $getvalue;
         }else{
-            if($option == null){
-                // 2
-                if($getvalue == $value) return "selected";
-            }else{
-                // 3
-                if($getvalue == $value) return $option;
+            if(is_array($getvalue)) {
+                if (in_array($value, $getvalue)) return $option;
+            }else {
+                if ($getvalue == $value) return $option;
             }
         }
         return "";
