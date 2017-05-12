@@ -12,9 +12,7 @@
         }
     ],
     "require": {
-        "php": ">=7",
-        "Illuminate/Support": "5.*",
-        "Illuminate/Database": "5.*",
+        "php": ">=5.5.9",
         "maikealame/auto-where": "*"
     },
     "autoload": {
