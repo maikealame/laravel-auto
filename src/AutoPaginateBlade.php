@@ -21,11 +21,13 @@ class AutoPaginateBlade
      *
      */
     public static function async($param){
-        $selector = isset($param) ? $param : [".panel-table"];
+        $selector = isset($param[0]) ? $param[0] : [".panel-table"];
+        if(!is_array($selector)) $selector = [$selector];
         $replace = "";
         foreach($selector as $s) {
             $replace .= '$("body") . find("'.$s.'") . replaceWith($(data) . find("'.$s.'"));';
         }
+        $changeUrl = isset($param[1]) ? $param[1] : true;
         $r = '<script>
         $(document).ready(function(){
             $("body").on("click",".pagination a",function(e){
@@ -33,9 +35,9 @@ class AutoPaginateBlade
                 var url = $(this).attr("href");
                 $.get(url,{},function(data){
                     '.$replace.'
-                    var pagetitle = $(data).find("title").text() || $("title").text();
-                    window.history.pushState({"html":data,"pageTitle":pagetitle}, pagetitle, url);
-                });
+                    var pagetitle = $(data).find("title").text() || $("title").text();';
+                    if($changeUrl) $r .= 'window.history.pushState({"html":data,"pageTitle":pagetitle}, pagetitle, url);';
+        $r .=   '});
             });
         });
         </script>';
