@@ -42,7 +42,7 @@ And what this autoWhere do ?
 
 `select * from users where birth >= '1990-12-12' ;`
 
-- if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|12,12,2000*** the query will be:
+- if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|12/12/2000*** the query will be:
 
 `select * from users where birth between '1990-12-12' AND '2000-12-12' ;`
 
