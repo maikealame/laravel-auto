@@ -86,17 +86,19 @@ Just for now
 
 Create your table with bootstrap or not, use all your logic with blades like normally, and use the blade directives of the package:
 
-- *Generate a script code to filter table without form, pass in param the selector of button will trigger your filter*
+- *Generate a script code to filter table without form, pass in param the selector of button will trigger your filter and inputs*
 
-`@autowherescript('.btn-filter')`
+`@autowherescript('.btn-filter', '.input-filter')`
 
 ---
 
-- *Generate a script code to async the reload table when paging, pass in param many selectors elements will you want replace*
+- *Generate a script code to async the reload table when paging, pass in 1st param many selectors elements will you want replace. In 2nd param the flag to change URL with page reloaded*
 
 `@autopagesasync('.panel-table')`
 
-`@autopagesasync('.panel-table tbody', '.panel-table .panel-footer')`
+`@autopagesasync(['.panel-table tbody', '.panel-table .panel-footer'])`
+
+`@autopagesasync(['.panel-table tbody', '.panel-table .panel-footer'], false)`
 
 ---
 
