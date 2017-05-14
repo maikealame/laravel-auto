@@ -70,7 +70,7 @@ class AutoPaginateBlade
 
         $r .= '</select>
         <script>
-            function function lengthGetUrlParameters() {
+            function lengthGetUrlParameters() {
                 var re = /([^&=]+)=?([^&]*)/g;
                 var decode = function (str) {
                     return decodeURIComponent(str.replace(/\+/g, \' \'));
