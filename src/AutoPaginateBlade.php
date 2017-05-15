@@ -36,7 +36,7 @@ class AutoPaginateBlade
                 $.get(url,{},function(data){
                     '.$replace.'
                     var pagetitle = $(data).find("title").text() || $("title").text();';
-                    if($changeUrl) $r .= 'window.history.pushState({"html":data,"pageTitle":pagetitle}, pagetitle, url);';
+        if($changeUrl) $r .= 'window.history.pushState({"html":data,"pageTitle":pagetitle}, pagetitle, url);';
         $r .=   '});
             });
         });
@@ -53,19 +53,31 @@ class AutoPaginateBlade
     public static function length($param){
         $lengths = Config::get("laravelauto.pages.length");
         $paginateObject = isset( $param[0] ) ? $param[0] : null;
-        $length = Request::has("length") ? Request::get("length") : $lengths[0];
+        $length = Request::has("length") ? Request::get("length") : ($paginateObject ? $paginateObject->perPage() : $lengths[0]);
+        $overwriteLength = Request::has("length") ? true : false;
         $total = $paginateObject ? $paginateObject->total() : $lengths[count($lengths)];
         $r = '
         <select class="pagination-length">';
         if( !in_array($length,$lengths))
             $r .= '<option value="'.$length.'" selected>'.$length.'</option>';
 
+        $last = false;
         foreach($lengths as $l) {
-            $checked = $length == $l ? "selected" : null;
-            if ($total >= $l)
-                $r .= '<option value = "'.$l.'" '.$checked.'>
-                '.$l.'
+            $checked = ($overwriteLength && $length == $l) ? "selected" : null;
+            if ($total > $l && !$last) {
+                $last = false;
+                $r .= '<option value = "' . $l . '" '.$checked.'>
+                ' . $l . '
                 </option >';
+            }else{
+                if($last) continue;
+                else{
+                    $r .= '<option value = "' . $total . '" '.($overwriteLength ? "" : "selected").'>
+                    ' . $total . '
+                    </option >';
+                    $last = true;
+                }
+            }
         }
 
         $r .= '</select>
