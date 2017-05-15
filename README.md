@@ -90,6 +90,10 @@ Create your table with bootstrap or not, use all your logic with blade like norm
 
 `@autowherescript('.btn-filter', '.input-filter')`
 
+**param[0]: button selector** - default: '.btn-filter'
+
+**param[1]: text inside `<a>`** - default: '.input-filter'
+
 ---
 
 - *Generate a script code to async the reload table when paging, pass in 1st param many selectors elements will you want replace. In 2nd param the flag to change URL with page reloaded*
@@ -100,13 +104,17 @@ Create your table with bootstrap or not, use all your logic with blade like norm
 
 `@autopagesasync(['.panel-table tbody', '.panel-table .panel-footer'], false)`
 
+**param[0]: replace selector** - required, string or array
+
+**param[1]: url change flag** - default: true
+
 ---
 
 **Usage:**
 
 ```
 <head>
-@autowherescript('.btn-filter')
+@autowherescript('.btn-filter', '.input-filter')
 @autopagesasync('.panel-table')
 </head>
 ```
