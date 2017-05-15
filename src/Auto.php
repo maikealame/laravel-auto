@@ -42,7 +42,7 @@ class Auto implements AutoInterface
      *
      * @return Auto
      */
-    public function class($class){
+    public function _class($class){
         $this->_class->table( (new $class)->getTable() );
         return $this->getInstance();
     }
@@ -89,7 +89,12 @@ class Auto implements AutoInterface
 
             }else return $this;
         }else{
-            return call_user_func_array(array($this, $method), $arguments);
+            if( $method == "class"){ // Keyword reserved of php
+
+                return call_user_func_array(array($this->_class, "_class"), $arguments);
+
+            }else
+                return call_user_func_array(array($this, $method), $arguments);
         }
     }
 
