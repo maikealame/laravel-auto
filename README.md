@@ -16,7 +16,7 @@ a Laravel helper package to make all or almost everything for your projects
 
 ## What it do ?
 
-List your tables with this light code:
+Filter / Sort / Paginate your tables with this light code:
 
 `$users = \App\User::autoWhere()->autoSort()->autoPaginate();`
 
@@ -84,7 +84,7 @@ Just for now
 
 ### [view]
 
-Create your table with bootstrap or not, use all your logic with blades like normally, and use the blade directives of the package:
+Create your table with bootstrap or not, use all your logic with blade like normally, and use the blade directives of the package:
 
 - *Generate a script code to filter table without form, pass in param the selector of button will trigger your filter and inputs*
 
