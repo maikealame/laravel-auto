@@ -151,7 +151,7 @@ Create your table with bootstrap or not, use all your logic with blade like norm
 
 ---
 
-*Usage:*
+**Usage:**
 
 ```
 <div class="panel panel-table">
