@@ -87,15 +87,19 @@ class Auto implements AutoInterface
 
                 return call_user_func_array(array($this->_class, "_or"), $arguments);
 
-            }else return $this;
-        }else{
-            if( $method == "class"){ // Keyword reserved of php
-
-                return call_user_func_array(array($this->_class, "_class"), $arguments);
-
-            }else
-                return call_user_func_array(array($this, $method), $arguments);
+            }
         }
+        if( $method == "class"){ // Keyword reserved of php
+
+            return call_user_func_array(array($this, "_class"), $arguments);
+
+        }
+
+        if (method_exists($this, $method)) {
+            return call_user_func_array(array($this, $method), $arguments);
+        }
+        return $this->getInstance();
+
     }
 
 }
