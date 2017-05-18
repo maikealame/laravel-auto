@@ -1,5 +1,5 @@
 # LaravelAuto
-a Laravel helper package to make ~~all~~ almost everything for your projects
+a Laravel helper package to make ~~all~~ almost everything in your projects
 
 [![Latest Version](https://img.shields.io/github/release/maikealame/laravel-auto.svg?style=flat-square)](https://github.com/maikealame/laravel-auto/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
