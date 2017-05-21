@@ -75,7 +75,8 @@ Soon...
 
 Just for now
 
-`[url] http://localhost/ocorrencias?sort=id&order=desc&filter[t.protocol]=<7
+`[url] http://localhost/ocorrencias?sort=id&order=desc&filter[t.protocol]=<7`
+
 
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/ex.PNG)
 
