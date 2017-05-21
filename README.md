@@ -1,5 +1,5 @@
 # LaravelAuto
-a Laravel helper package to make ~~all~~ almost everything for your projects
+a Laravel helper package to make ~~all~~ almost everything in your projects
 
 [![Latest Version](https://img.shields.io/github/release/maikealame/laravel-auto.svg?style=flat-square)](https://github.com/maikealame/laravel-auto/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -35,9 +35,9 @@ And what this autoWhere do ?
 
 - if url is ***http://localhost/usuarios?filter[birth]=12/12/1990*** the query will be:
 
-`select * from users where birth >= '1990-12-12' and t.start <= '1990-12-12' ;`
+`select * from users where birth = '1990-12-12' ;`
 
-- if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|%2A*** the query will be: ( %2A = * )
+- if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|*** the query will be:
 
 `select * from users where birth >= '1990-12-12' ;`
 
@@ -75,7 +75,8 @@ Soon...
 
 Just for now
 
-`[url] http://localhost/ocorrencias?sort=id&order=desc&filter[t.id]=>1`
+`[url] http://localhost/ocorrencias?sort=id&order=desc&filter[t.protocol]=<7`
+
 
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/ex.PNG)
 
