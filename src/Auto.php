@@ -60,9 +60,9 @@ class Auto implements AutoInterface
 
 
     /**
-     * get quickly where sql without params
+     * set default field value for one column in the query
      *
-     * @return string
+     * @return void
      */
     public function setField($column, $value){
         Request::has("filter[$column]") ?: Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
