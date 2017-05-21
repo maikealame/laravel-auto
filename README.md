@@ -25,6 +25,14 @@ And what this autoWhere do ?
 
 `select * from users where age > 20;`
 
+- if url is ***http://localhost/usuarios?filter[age]=10:20*** the query will be:
+
+`select * from users where age >= 10 AND age <= 20;`
+
+- if url is ***http://localhost/usuarios?filter[age]=<>20*** the query will be:
+
+`select * from users where age <> 10;`
+
 - if url is ***http://localhost/usuarios?filter[name]=Maike*** the query will be:
 
 `select * from users where UPPER(name) LIKE '%MAIKE%' ;`
@@ -33,9 +41,17 @@ And what this autoWhere do ?
 
 `select * from users where name = 'Maike' ;`
 
+- if url is ***http://localhost/usuarios?filter[name]=Maike&columns[name]=text_equal*** the query will be:
+
+`select * from users where UPPER(name) = 'MAIKE' ;`
+
 - if url is ***http://localhost/usuarios?filter[birth]=12/12/1990*** the query will be:
 
 `select * from users where birth = '1990-12-12' ;`
+
+- if url is ***http://localhost/usuarios?filter[birth]=<12/12/1990*** the query will be:
+
+`select * from users where birth < '1990-12-12' ;`
 
 - if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|*** the query will be:
 
@@ -44,6 +60,18 @@ And what this autoWhere do ?
 - if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|12/12/2000*** the query will be:
 
 `select * from users where birth between '1990-12-12' AND '2000-12-12' ;`
+
+- if url is ***http://localhost/usuarios?filter[bool_field]=1*** the query will be:
+
+- if url is ***http://localhost/usuarios?filter[bool_field]=true*** the query will be:
+
+`select * from users where bool_field = true;`
+
+- if url is ***http://localhost/usuarios?filter[bool_field]=0*** the query will be:
+
+- if url is ***http://localhost/usuarios?filter[bool_field]=false*** the query will be:
+
+`select * from users where bool_field = false;`
 
 - if url is ***http://localhost/usuarios?filter[birth]=1&columns[birth]=null*** the query will be:
 
@@ -223,15 +251,34 @@ Create your table with bootstrap or not, use all your logic with blade like norm
 Let's see it:
 ```
 use App\Http\Controllers\Controller;
+use Auto\Facades\Auto;
 
 class TestsController extends Controller
 {
+    // without joins
     public function autowhere(){
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate();
-        return view("tests.ticket",compact("tickets","length"));
+        return view("tests.ticket",compact("tickets"));
     }
 
+    // with joins
     public function autowherealias()
+    {
+        $tickets = \App\Ticket::from('ticket as t')
+            ->select('t.id as id',
+                't.start as start',
+                't.end as end',
+                'p.name as portfolio'
+            )
+            ->leftJoin('portfolio as p', 't.portfolio_id', '=', 'p.id')
+            ->autoWhere()
+            ->autoSort()
+            ->autoPaginate();
+        return view("tests.ticket_alias", compact("tickets"));
+    }
+    
+    // with overwrite column type
+    public function autowhereoverwrite()
     {
         $tickets = \App\Ticket::from('ticket as t')
             ->select('t.id as id',
@@ -245,11 +292,49 @@ class TestsController extends Controller
             ->autoPaginate();
         return view("tests.ticket_alias", compact("tickets"));
     }
+    
+    // with 'or' conditions - Ex. url: localhost/ocorrencias?filter[t.start]=21/05/2017&filter[t.end]=21/05/2017
+    public function autowhereor()
+    {
+        $tickets = \App\Ticket::from('ticket as t')
+            ->select('t.id as id',
+                't.start as start',
+                't.end as end',
+                'p.name as portfolio'
+            )
+            ->leftJoin('portfolio as p', 't.portfolio_id', '=', 'p.id')
+            ->autoWhere([ 'or' =>[ "t.start", "t.end" ] ]) // you can pass param here and create 'or' conditions with columns you wish
+            ->autoSort()
+            ->autoPaginate();
+        // generate where: ' where ( t.start = 2017-05-21 OR t.end = 2017-05-21 ) '
+        return view("tests.ticket_alias", compact("tickets"));
+    }
+    
+    // set default sort params if not has in url order,sort params
+    // this overwrite param setted in config file
+    public function autowheresort(){
+        $tickets = \App\Ticket::autoWhere()->autoSort( [ "id", "desc" ] )->autoPaginate(); // set columns and 'asc' or 'desc'
+        return view("tests.ticket",compact("tickets"));
+    }
+    
+    // set default pagination length if not has in url length params
+    // this overwrite param setted in config file
+    public function autowherepaginate(){
+        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate( 10 ); // set columns and 'asc' or 'desc'
+        return view("tests.ticket",compact("tickets"));
+    }
+    
+    // set default value to query column
+    public function autowheredefaultvalue(){
+        Auto::setField( 't.start', date("Y-m-d") );
+        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate(); // automatically get new field defaut value in Request filter param
+        return view("tests.ticket",compact("tickets"));
+    }
 }
 ```
 
 Ok, where `autoWhere`, `autoSort` and `autoPaginate` come from ? See [**Model**] section to understand.
-It's very simple and light for yout code, even I don't believe.
+It's very simple and light for your code, even I don't believe.
 
 ### [Model]
 
