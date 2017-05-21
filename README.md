@@ -255,13 +255,17 @@ use Auto\Facades\Auto;
 
 class TestsController extends Controller
 {
+
     // without joins
+    
     public function autowhere(){
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate();
         return view("tests.ticket",compact("tickets"));
     }
 
+
     // with joins
+    
     public function autowherealias()
     {
         $tickets = \App\Ticket::from('ticket as t')
@@ -277,7 +281,9 @@ class TestsController extends Controller
         return view("tests.ticket_alias", compact("tickets"));
     }
     
+    
     // with overwrite column type
+    
     public function autowhereoverwrite()
     {
         $tickets = \App\Ticket::from('ticket as t')
@@ -293,7 +299,9 @@ class TestsController extends Controller
         return view("tests.ticket_alias", compact("tickets"));
     }
     
+    
     // with 'or' conditions - Ex. url: localhost/ocorrencias?filter[t.start]=21/05/2017&filter[t.end]=21/05/2017
+    
     public function autowhereor()
     {
         $tickets = \App\Ticket::from('ticket as t')
@@ -310,21 +318,27 @@ class TestsController extends Controller
         return view("tests.ticket_alias", compact("tickets"));
     }
     
+    
     // set default sort params if not has in url order,sort params
     // this overwrite param setted in config file
+    
     public function autowheresort(){
         $tickets = \App\Ticket::autoWhere()->autoSort( [ "id", "desc" ] )->autoPaginate(); // set columns and 'asc' or 'desc'
         return view("tests.ticket",compact("tickets"));
     }
     
+    
     // set default pagination length if not has in url length params
     // this overwrite param setted in config file
+    
     public function autowherepaginate(){
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate( 10 ); // set columns and 'asc' or 'desc'
         return view("tests.ticket",compact("tickets"));
     }
     
+    
     // set default value to query column
+    
     public function autowheredefaultvalue(){
         Auto::setField( 't.start', date("Y-m-d") );
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate(); // automatically get new field defaut value in Request filter param
