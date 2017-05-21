@@ -81,6 +81,10 @@ And what this autoWhere do ?
 
 `select * from users where birth IS NOT NULL;`
 
+- if url is ***http://localhost/usuarios?filter[perfil][]=1&filter[perfil][]=2*** the query will be:
+
+`select * from users where (perfil = 1 OR perfil = 2) ;`
+
 
 **Seriosly, don't worry with type of column and sql syntax, this will automate your querys with fresh and clean code.**
 
@@ -211,7 +215,7 @@ Create your table with bootstrap or not, use all your logic with blade like norm
                 <th><input type="text" class="form-control datepicker" name="t.start" value="@autowherefilter('t.start')"></th>
                 <th><input type="text" class="form-control datepicker" name="t.end" value="@autowherefilter('t.end')"></th>
                 <th>
-                    <select name="p.id">
+                    <select name="p.id" multiple>
                         <option value="1" @autowherefilter('p.id',1)>Portfolio 1</option
                         <option value="2" @autowherefilter('p.id',2)>Portfolio 2</option
                         <option value="3" @autowherefilter('p.id',3)>Portfolio 3</option
