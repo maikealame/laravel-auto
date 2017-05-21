@@ -35,7 +35,7 @@ And what this autoWhere do ?
 
 - if url is ***http://localhost/usuarios?filter[birth]=12/12/1990*** the query will be:
 
-`select * from users where birth >= '1990-12-12' and t.start <= '1990-12-12' ;`
+`select * from users where birth = '1990-12-12' ;`
 
 - if url is ***http://localhost/usuarios?filter[birth]=12/12/1990|*** the query will be:
 
