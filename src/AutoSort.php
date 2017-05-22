@@ -79,11 +79,10 @@ trait AutoSort
         if (is_string($sort)) {
             return ['sort' => $sort, 'order' => $configDefaultOrder];
         }
-        reset($sort);
-        $each = each($sort);
-        return ($each[0] === 0) ? ['sort' => $each[1], 'order' => $configDefaultOrder] : [
-            'sort'  => $each[0],
-            'order' => $each[1]
-        ];
+
+        return isset($sort[1]) ? [
+            'sort'  => $sort[0],
+            'order' => $sort[1]
+        ] : ['sort' => $sort[0], 'order' => $configDefaultOrder] ;
     }
 }
