@@ -39,11 +39,14 @@ class AutoSortBlade
             }
         }
 
+        $param = [
+        ];
+
         if (Input::get('sort') == $sortOriginal && in_array(Input::get('order'), ['asc', 'desc'])) {
             $asc_suffix = Config::get('laravelauto.sort.asc_suffix', '-asc');
             $desc_suffix = Config::get('laravelauto.sort.desc_suffix', '-desc');
             $icon = $icon . (Input::get('order') === 'asc' ? $asc_suffix : $desc_suffix);
-            $order = Input::get('order') === 'desc' ? 'asc' : 'desc';
+            $order = Input::get('order') === 'asc' ? 'desc' : '';
         } else {
             $icon = Config::get('laravelauto.sort.sortable_icon');
             $order = Config::get('laravelauto.sort.default_order_unsorted', 'asc');
@@ -51,8 +54,9 @@ class AutoSortBlade
 
         $param = [
             'sort' => $sortOriginal,
-            'order' => $order,
+            'order' => $order
         ];
+
 
         $queryString = http_build_query(array_merge(array_filter(Request::except('sort', 'order', 'page')), $param));
         $anchorClass = Config::get('laravelauto.sort.anchor_class', null);

@@ -9,15 +9,18 @@ use Auto\Exceptions\AutoSortException;
  */
 trait AutoSort
 {
+    private $defaultSortParameters = [];
     /**
      * @param \Illuminate\Database\Query\Builder $query
      * @param array|null                         $defaultSortParameters
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    public function scopeAutoSort($query, $defaultSortParameters = null)
+    public function scopeAutoSort($query, $defaultSortParameters = [])
     {
-        if (Request::has('sort') && Request::has('order')) {
+        $this->defaultSortParameters = $defaultSortParameters;
+
+        if (Request::has('sort') && Request::get('order') !== null) {
             return $this->queryOrderBuilder($query, Request::only(['sort', 'order']));
         } elseif ( ! is_null($defaultSortParameters)) {
             $defaultSortArray = $this->formatToSortParameters($defaultSortParameters);
@@ -44,7 +47,8 @@ trait AutoSort
         if (is_null($column)) {
             return $query;
         }
-        $query->orderBy($column, $direction);
+        if(!empty($direction))
+            $query->orderBy($column, $direction);
         return $query;
     }
     /**
