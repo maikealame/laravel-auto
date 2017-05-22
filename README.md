@@ -19,6 +19,10 @@ Filter / Sort / Paginate your tables with this light code:
 
 `$users = \App\User::autoWhere()->autoSort()->autoPaginate();`
 
+Can I use Eloquent where too ? Yes
+
+`$users = \App\User::where('age','>=',10)->autoWhere()->autoSort()->autoPaginate();`
+
 And what this autoWhere do ?
 
 - if url is ***http://localhost/usuarios?filter[age]=>20*** the query will be:
