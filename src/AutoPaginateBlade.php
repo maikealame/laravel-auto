@@ -58,8 +58,10 @@ class AutoPaginateBlade
         $total = $paginateObject ? $paginateObject->total() : $lengths[count($lengths)];
         $r = '
         <select class="pagination-length">';
-        if( !in_array($length,$lengths))
-            $r .= '<option value="'.$length.'" selected>'.$length.'</option>';
+        if( !in_array($length,$lengths)) {
+            array_push($lengths,$length);
+            asort($lengths);
+        }
 
         $last = false;
         foreach($lengths as $l) {
