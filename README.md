@@ -208,14 +208,14 @@ Create your table with bootstrap or not, use all your logic with blade like norm
         <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr role="row">
-                <th>@autosort('t.id','Protocolo')</th>
+                <th>@autosort('t.protocol','Protocolo')</th>
                 <th>@autosort('t.start','Data Abertura')</th>
                 <th>@autosort('t.end','Data Fechamento')</th>
                 <th>@autosort('p.name','Portfolio')</th>
                 <th class="tc"><b class="fa fa-gear"></b></th>
             </tr>
             <tr>
-                <th><input type="text" class="form-control" name="t.id" value="@autowherefilter('t.id')"></th>
+                <th><input type="text" class="form-control" name="t.id" value="@autowherefilter('t.protocol')"></th>
                 <th><input type="text" class="form-control datepicker" name="t.start" value="@autowherefilter('t.start')"></th>
                 <th><input type="text" class="form-control datepicker" name="t.end" value="@autowherefilter('t.end')"></th>
                 <th>
@@ -278,6 +278,7 @@ class TestsController extends Controller
     {
         $tickets = \App\Ticket::from('ticket as t')
             ->select('t.id as id',
+                't.protocol as protocol',
                 't.start as start',
                 't.end as end',
                 'p.name as portfolio'
@@ -296,6 +297,7 @@ class TestsController extends Controller
     {
         $tickets = \App\Ticket::from('ticket as t')
             ->select('t.id as id',
+                't.protocol as protocol',
                 't.start as start',
                 't.end as end',
                 'p.name as portfolio'
@@ -314,6 +316,7 @@ class TestsController extends Controller
     {
         $tickets = \App\Ticket::from('ticket as t')
             ->select('t.id as id',
+                't.protocol as protocol',
                 't.start as start',
                 't.end as end',
                 'p.name as portfolio'
@@ -340,7 +343,7 @@ class TestsController extends Controller
     // this overwrite param setted in config file
     
     public function autowherepaginate(){
-        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate( 10 ); // set columns and 'asc' or 'desc'
+        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate( 10 ); // set overwrite default pagination
         return view("tests.ticket",compact("tickets"));
     }
     
