@@ -91,6 +91,7 @@ And what this autoWhere do ?
 
 
 **Seriosly, don't worry with type of column and sql syntax, this will automate your querys with fresh and clean code.**
+
 **This is not a substitute for Scopes, only another way to simplify the life and can be used with scopes normally**
 
 
