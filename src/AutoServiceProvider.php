@@ -46,7 +46,7 @@ class AutoServiceProvider extends ServiceProvider
      */
     private function registerAuto()
     {
-        $this->app->singleton('\Auto\Contracts\AutoInterface', function ($app)
+        $this->app->singleton(\Auto\Contracts\AutoInterface::class, function ($app)
         {
             return new \Auto\Auto();
         });
