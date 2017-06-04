@@ -67,12 +67,19 @@ class AutoSortBlade
         $iconAndTextSeparator = Config::get('laravelauto.sort.icon_text_separator', '');
 
         $clickableIcon = Config::get('laravelauto.sort.clickable_icon', false);
-        $trailingTag = $iconAndTextSeparator . '<i class="' . $icon . '"></i>' . '</a>' ;
-        if ($clickableIcon === false) {
-            $trailingTag = '</a>' . $iconAndTextSeparator . '<i class="' . $icon . '"></i>';
+
+        if ($clickableIcon === "only"){
+            $trailingTag = '</a>' . $iconAndTextSeparator . '<a class="' . $icon . '" href="'. url(Request::path() . '?' . $queryString) . '"'. '</a>';
+            $html = '<a ' . $anchorClass . '>' . htmlentities($title) . $trailingTag;
+        }else {
+            $trailingTag = $iconAndTextSeparator . '<i class="' . $icon . '"></i>' . '</a>';
+            if ($clickableIcon === false) {
+                $trailingTag = '</a>' . $iconAndTextSeparator . '<i class="' . $icon . '"></i>';
+            }
+            $html = '<a ' . $anchorClass . ' href="'. url(Request::path() . '?' . $queryString) . '"' . '>' . htmlentities($title) . $trailingTag;
         }
 
-        return '<a ' . $anchorClass . ' href="'. url(Request::path() . '?' . $queryString) . '"' . '>' . htmlentities($title) . $trailingTag;
+        return $html;
     }
 
 

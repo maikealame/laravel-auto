@@ -66,7 +66,7 @@ return [
          */
         'sortable_icon'    => 'fa fa-sort',
         /*
-        generated icon is clickable non-clickable (default)
+        generated icon is clickable non-clickable (true, false, "only")
          */
         'clickable_icon' => false,
         /*
