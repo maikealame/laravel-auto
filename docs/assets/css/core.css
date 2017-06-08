@@ -1,0 +1,54 @@
+@import url("main.css");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:600');
+
+
+body *{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.text-main{
+    color:#49bf9d;
+}
+.text-sub{
+    color: #ff5f00;
+}
+.bg-main{
+    color:#49bf9d;
+}
+.bg-sub{
+    color:#ff5f00;
+}
+
+#header{
+    background-image: url("../../images/bg.jpg");
+    background-position: center left;
+    color:rgba(255, 255, 255, 1);
+}
+
+#header h1{
+    text-shadow: 2px 2px 2px #000;
+    color:rgba(255, 255, 255, 1);
+}
+
+#header .image.avatar{
+    width:10em;
+    height:10em;
+    background: url('/images/logo.png') no-repeat center center;
+    background-size: cover;
+}
+
+#header h1 strong{
+    font-size:2em;
+    font-family: 'Josefin Sans', sans-serif;
+    color:#49bf9d;
+}
+
+#footer .donate{
+
+}
+#footer .donate .title{
+    font-size:.9em;
+    margin-bottom:20px;
+    text-shadow: 2px 2px 2px #000;
+}
