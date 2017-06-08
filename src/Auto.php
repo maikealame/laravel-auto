@@ -64,8 +64,26 @@ class Auto implements AutoInterface
      *
      * @return void
      */
-    public function setField($column, $value){
+    public function setDefaultField($column, $value){
         Request::has("filter[$column]") ?: Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
+    }
+
+    /**
+     * set field value for one column in the query
+     *
+     * @return void
+     */
+    public function setField($column, $value){
+        Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
+    }
+
+    /**
+     * set column type in the query
+     *
+     * @return void
+     */
+    public function setColumn($column, $value){
+        Request::merge(["columns"=>array_merge(Request::get("columns"),[$column=>$value])]);
     }
 
 
