@@ -74,6 +74,7 @@ class Auto implements AutoInterface
      * @return void
      */
     public function setField($column, $value){
+        Request::has("filter") ?: Request::merge(["filter"=>[]]);
         Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
     }
 
@@ -83,6 +84,7 @@ class Auto implements AutoInterface
      * @return void
      */
     public function setColumn($column, $value){
+        Request::has("columns") ?: Request::merge(["columns"=>[]]);
         Request::merge(["columns"=>array_merge(Request::get("columns"),[$column=>$value])]);
     }
 
