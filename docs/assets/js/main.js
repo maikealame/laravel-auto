@@ -24,7 +24,8 @@
 			$body = $('body'),
 			$header = $('#header'),
 			$footer = $('#footer'),
-			$main = $('#main');
+			$main = $('#main'),
+			$icons = $("#iconbar");
 
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
@@ -57,13 +58,15 @@
 				);
 			});
 
-		// Footer.
+		// Footer and Header.
 			skel.on('+medium', function() {
 				$footer.insertAfter($main);
+				$header.append($icons);
 			});
 
 			skel.on('-medium !medium', function() {
 				$footer.appendTo($header);
+				$footer.prepend($icons);
 			});
 
 		// Header.

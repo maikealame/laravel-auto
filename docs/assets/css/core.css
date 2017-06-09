@@ -15,8 +15,21 @@ body *{
     line-height: 2em;
 }
 
-form{
+body form{
     margin-bottom:0;
+}
+
+body code{
+    color: #da3e00;
+}
+
+body strong, b{
+    color: #4e4e4e;
+}
+
+body a:hover{
+    text-decoration: none;
+    border-bottom:1px solid;
 }
 
 .text-main{
@@ -34,6 +47,14 @@ form{
 
 .image:before {
     opacity:0;
+}
+
+#iconbar {
+    margin: 1em 0 0 0;
+}
+
+#iconbar a {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 
@@ -137,8 +158,37 @@ body.is-loading #main{
     margin-bottom:20px;
     text-shadow: 2px 2px 2px #000;
 }
+#footer .donate form{
+    text-align: right;
+}
+body > #footer .donate .title {
+    color:#FFF;
+    text-shadow: 2px 2px 2px #000;
+}
+body > #footer .donate form{
+    text-align: center;
+}
+
 
 
 .syntaxhighlighter{
     padding:1px;
+}
+
+
+
+.ml20{
+    margin-left:20px;
+}
+
+ul.icon-list{
+    list-style: none;
+}
+ul.icon-list > li::before{
+    content: "\f00c"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -1.6em; /* same as padding-left set on li */
+    width: 1.4em; /* same as padding-left set on li */
+    color:#da3e00;
 }
