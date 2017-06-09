@@ -12,6 +12,11 @@
 
 body *{
     font-family: 'Montserrat', sans-serif;
+    line-height: 2em;
+}
+
+form{
+    margin-bottom:0;
 }
 
 .text-main{
@@ -27,6 +32,11 @@ body *{
     color:#ff5f00;
 }
 
+.image:before {
+    opacity:0;
+}
+
+
 #header{
     background-image: url("../../images/bg.jpg");
     background-position: center left;
@@ -39,16 +49,84 @@ body *{
 }
 
 #header .image.avatar{
-    width:10em;
+    width:12em;
     height:10em;
-    background: url('/images/logo.png') no-repeat center center;
+    background: url('/images/logo-t.png') no-repeat center center;
     background-size: cover;
+    border-radius:0;
 }
 
 #header h1 strong{
     font-size:2em;
     font-family: 'Josefin Sans', sans-serif;
     color:#49bf9d;
+}
+
+body.is-loading #main{
+    opacity:0;
+}
+#main{
+    opacity:1;
+    transition:opacity .4s linear;
+    -o-transition:opacity .4s linear;
+    -moz-transition:opacity .4s linear;
+    -webkit-transition:opacity .4s linear;
+    max-width:100%;
+}
+
+#main > section > article{
+    padding:8px 2px;
+}
+
+#main .url-list li b{
+    color:#4a8cdb;
+}
+
+#main .code-group-container{
+    -webkit-box-shadow: 0 0 2px 2px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 0 2px 2px rgba(0,0,0,.1);
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.1);
+}
+#main .code-group{
+    padding:2em 1em;
+    border:1px solid #ccc;
+    position: relative;
+}
+#main .code-group:first-child{
+    border-top-right-radius:4px;
+    -moz-border-top-right-radius:4px;
+    -webkit-border-top-right-radius:4px;
+    border-top-left-radius:4px;
+    -moz-border-top-left-radius:4px;
+    -webkit-border-top-left-radius:4px;
+}
+#main .code-group:last-child{
+    border-bottom-right-radius:4px;
+    -moz-border-bottom-right-radius:4px;
+    -webkit-border-bottom-right-radius:4px;
+    border-bottom-left-radius:4px;
+    -moz-border-bottom-left-radius:4px;
+    -webkit-border-bottom-left-radius:4px;
+}
+#main .code-group > header{
+    background: #49bf9d;
+    color:#FFF;
+    margin:-1em 0 1em -1em;
+    padding:.5em;
+    border-top-right-radius:2px;
+    -moz-border-top-right-radius:2px;
+    -webkit-border-top-right-radius:2px;
+    border-bottom-right-radius:2px;
+    -moz-border-bottom-right-radius:2px;
+    -webkit-border-bottom-right-radius:2px;
+}
+#main .code-group > code{
+    display: block;
+}
+#main .code-group > footer{
+    background: #e0e0e0;
+    margin:1em -1em -1em -1em;
+    padding:.5em .5em .5em 1em;
 }
 
 #footer .donate{
@@ -58,4 +136,9 @@ body *{
     font-size:.9em;
     margin-bottom:20px;
     text-shadow: 2px 2px 2px #000;
+}
+
+
+.syntaxhighlighter{
+    padding:1px;
 }

@@ -4,7 +4,26 @@
 		<title>Laravel Auto</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="canonical" href="https://maikealame.github.io/laravel-auto/" />
+        <meta name="author" content="Maike Alame">
+        <meta name="description" content="PHP Laravel helper package to make almost everything in your projects">
+        <meta name="theme-color" content="#ff5f00" />
+
+        <meta property="og:site_name" content="laravel-auto"/>
+        <meta property="og:url" content="https://maikealame.github.io/laravel-auto/" />
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Laravel Auto" />
+        <meta property="og:description" content="PHP Laravel helper package to make almost everything in your projects" />
+        <meta property="og:image" content="https://maikealame.github.io/laravel-auto/images/logo_300.png" />
+
+        <!-- Google+ / Schema.org -->
+        <meta itemprop="name" content="iziModal.js">
+        <meta itemprop="description" content="Elegant, responsive, flexible and lightweight modal plugin with jQuery.">
+        <meta itemprop="image" content="http://izimodal.marcelodolce.com/img/izimodal-social.jpg">
+        <link href="https://plus.google.com/+MarceloDolce" rel="publisher">
+
+
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/core.css" />
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://use.fontawesome.com/f6a924573c.js"></script>
@@ -18,6 +37,20 @@
         <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+        <link href="vendor/SyntaxHighlighter/styles/shCore.css" rel="stylesheet"/>
+        <link href="vendor/SyntaxHighlighter/styles/shCoreDefault.css" rel="stylesheet"/>
+        <link href="vendor/SyntaxHighlighter/styles/shThemeDefault.css" rel="stylesheet"/>
+        <script src="vendor/SyntaxHighlighter/scripts/XRegExp.js"></script>
+        <script src="vendor/SyntaxHighlighter/scripts/shCore.js"></script>
+        <script src="vendor/SyntaxHighlighter/scripts/shAutoloader.js"></script>
+        <script src="vendor/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
+        <script src="vendor/SyntaxHighlighter/scripts/shBrushPhp.js"></script>
+        <script src="vendor/SyntaxHighlighter/scripts/shBrushPlain.js"></script>
+        <script src="vendor/SyntaxHighlighter/scripts/shBrushXml.js"></script>
+
+        <!--<script src="vendor/markdown-js/lib/markdown.js"></script>-->
 	</head>
 	<body id="top">
 
@@ -29,9 +62,13 @@
                         <strong>Laravel Auto</strong>
                         <br />
                         a Laravel helper package to make
+                        <br />
                         almost everything in your projects.
                         <br />
-					    crafted with <i class="fa fa-heart text-sub"></i>
+					    crafted with
+                        <i class="fa fa-coffee text-main"></i>
+                        <small><i class="fa fa-plus"></i></small>
+                        <i class="fa fa-heart text-sub"></i>
                         by <a href="https://github.com/maikealame">Alame</a>.</h1>
 				</div>
 			</header>
@@ -39,59 +76,538 @@
 		<!-- Main -->
 			<div id="main">
 
-				<!-- One -->
-					<section id="one">
-						<header class="major">
-							<h2>Ipsum lorem dolor aliquam ante commodo<br />
-							magna sed accumsan arcu neque.</h2>
-						</header>
-						<p>Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis tortor primis integer massa adipiscing id nisi accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque cubilia.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
-						</ul>
-					</section>
+                <!--<div id="markdown"></div>-->
 
-				<!-- Two -->
-					<section id="two">
-						<h2>Recent Work</h2>
-						<div class="row">
-							<article class="6u 12u$(xsmall) work-item">
-								<a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="" /></a>
-								<h3>Magna sed consequat tempus</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</article>
-							<article class="6u$ 12u$(xsmall) work-item">
-								<a href="images/fulls/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="" /></a>
-								<h3>Ultricies lacinia interdum</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</article>
-							<article class="6u 12u$(xsmall) work-item">
-								<a href="images/fulls/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="" /></a>
-								<h3>Tortor metus commodo</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</article>
-							<article class="6u$ 12u$(xsmall) work-item">
-								<a href="images/fulls/04.jpg" class="image fit thumb"><img src="images/thumbs/04.jpg" alt="" /></a>
-								<h3>Quam neque phasellus</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</article>
-							<article class="6u 12u$(xsmall) work-item">
-								<a href="images/fulls/05.jpg" class="image fit thumb"><img src="images/thumbs/05.jpg" alt="" /></a>
-								<h3>Nunc enim commodo aliquet</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</article>
-							<article class="6u$ 12u$(xsmall) work-item">
-								<a href="images/fulls/06.jpg" class="image fit thumb"><img src="images/thumbs/06.jpg" alt="" /></a>
-								<h3>Risus ornare lacinia</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</article>
-						</div>
-						<ul class="actions">
-							<li><a href="#" class="button">Full Portfolio</a></li>
-						</ul>
-					</section>
+                <section id="title">
+                    <header class="major">
+                        <h2>A great usefull helper !</h2>
+                    </header>
+                    <article>
+                        <div class="row">
+                            <article class="col-md-12">
+                                <a href="images/examples/1.png" class="image fit thumb image-modal">
+                                    <img src="images/examples/1.png" alt="Example 1" class=""/>
+                                </a>
+                            </article>
+                        </div>
+                        <ul>
+                            <li>Create automatically sql where conditions (mysql and postgresql support)</li>
+                            <li>Create list filters functionality with flexible code for your own layout</li>
+                            <li>Create sortable functionality with flexible code for your own layout</li>
+                            <li>Create pagination to combine with this package methods</li>
+                            <li>Create an automatically list length combobox</li>
+                        </ul>
+                        <i class="fa fa-magic"></i> <i>Want more ? send feedback and we increase this package with more magics. </i>
+                    </article>
+                    <footer>
+                        <ul class="actions">
+                            <li><a href="https://github.com/maikealame/laravel-auto/issues" class="button">Send Issue</a></li>
+                        </ul>
+                    </footer>
+                </section>
 
-				<!-- Three -->
+
+                <section id="what-it-do">
+                    <header class="major">
+                        <h2>What it do ?</h2>
+                    </header>
+                    <article>
+                        <p>Filter / Sort / Paginate your tables with this light code:</p>
+
+                        <p><code>$users = \App\User::autoWhere()->autoSort()->autoPaginate();</code></p>
+
+                        <p>Can I use Eloquent where too ? Yes</p>
+
+                        <p><code>$users = \App\User::where('age','>=',10)->autoWhere()->autoSort()->autoPaginate();</code></p>
+
+                        <p>And what this autoWhere do ?</p>
+
+                        <ul class="url-list">
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[age]=>20</b> the query will be:</p>
+                                <p><code>select * from users where age > 20;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[age]=10:20</b> the query will be:</p>
+                                <p><code>select * from users where age >= 10 AND age <= 20;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[age]=<>20</b> the query will be:</p>
+                                <p><code>select * from users where age <> 10;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[name]=Maike</b> the query will be:</p>
+                                <p><code>select * from users where UPPER(name) LIKE '%MAIKE%' ;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[name]=Maike&columns[name]=equal</b> the query will be:</p>
+                                <p><code>select * from users where name = 'Maike' ;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[name]=Maike&columns[name]=text_equal</b> the query will be:</p>
+                                <p><code>select * from users where UPPER(name) = 'MAIKE' ;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[birth]=12/12/1990</b> the query will be:</p>
+                                <p><code>select * from users where birth = '1990-12-12' ;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[birth]=<12/12/1990</b> the query will be:</p>
+                                <p><code>select * from users where birth < '1990-12-12' ;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[birth]=12/12/1990|</b> the query will be:</p>
+                                <p><code>select * from users where birth >= '1990-12-12' ;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[birth]=12/12/1990|12/12/2000</b> the query will be:</p>
+                                <p><code>select * from users where birth between '1990-12-12' AND '2000-12-12' ;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[bool_field]=1</b> the query will be:</p>
+
+                                <p>if url is <b>http://localhost/usuarios?filter[bool_field]=true</b> the query will be:</p>
+
+                                <p><code>select * from users where bool_field = true;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[bool_field]=0</b> the query will be:</p>
+
+                                <p>if url is <b>http://localhost/usuarios?filter[bool_field]=false</b> the query will be:</p>
+
+                                <p><code>select * from users where bool_field = false;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[birth]=1&columns[birth]=null</b> the query will be:</p>
+                                <p><code>select * from users where birth IS NULL;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[birth]=&columns[birth]=null</b> the query will be:</p>
+                                <p><code>select * from users where birth IS NOT NULL;</code></p>
+                            </li>
+                            <li>
+                                <p>if url is <b>http://localhost/usuarios?filter[perfil][]=1&filter[perfil][]=2</b> the query will be:</p>
+                                <p><code>select * from users where (perfil = 1 OR perfil = 2) ;</code></p>
+                            </li>
+                        </ul>
+
+                        <br />
+                        <p>
+                            <i class="fa fa-thumbs-up"></i>
+                            <b>Seriosly, don't worry with type of column and sql syntax, this will automate your querys with fresh and clean code.</b>
+                        </p>
+
+                        <p>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <b>This is not a substitute for Scopes, only another way to simplify the life and can be used with scopes normally</b>
+                        </p>
+                    </article>
+                    <footer>
+                    </footer>
+                </section>
+
+
+                <section id="what-is-necessary">
+                    <header class="major">
+                        <h2>What is necessary ?</h2>
+                    </header>
+                    <article>
+                        <p>To work all modules, it's necessary the following dependencies:</p>
+                        <ul>
+                            <li>Laravel 5.*</li>
+                            <li>Font-awesome</li>
+                            <li>Bootstrap</li>
+                            <li>Jquery</li>
+                        </ul>
+                    </article>
+                    <footer>
+                    </footer>
+                </section>
+
+
+                <section id="wiki">
+                    <header class="major">
+                        <h2>Wiki ?</h2>
+                    </header>
+                    <article>
+                        <p>Soon...</p>
+                    </article>
+                    <footer>
+                    </footer>
+                </section>
+
+
+
+                <section id="example">
+                    <header class="major">
+                        <h2>Example ?</h2>
+                    </header>
+                    <article>
+                        <p>See below:</p>
+                        <p><code>[url] http://localhost/ocorrencias?sort=id&order=desc&filter[t.protocol]=<7</code></p>
+                        <div class="row">
+                            <article class="col-md-12">
+                                <a href="images/examples/1.png" class="image fit thumb image-modal">
+                                    <img src="images/examples/1.png" alt="http://localhost/ocorrencias?sort=id&order=desc&filter[t.protocol]=<7" class=""/>
+                                </a>
+                            </article>
+                        </div>
+                        <br />
+                        <p><code>[url] http://gsa.localhost/monitoramento/alertas?filter[a.status]=opened&filter[type]=geofence</code></p>
+                        <div class="row">
+                            <article class="col-md-12">
+                                <a href="images/examples/2.png" class="image fit thumb image-modal">
+                                    <img src="images/examples/2.png" alt="http://gsa.localhost/monitoramento/alertas?filter[a.status]=opened&filter[type]=geofence" class=""/>
+                                </a>
+                            </article>
+                        </div>
+                    </article>
+                    <footer>
+                    </footer>
+                </section>
+
+
+
+
+
+                <section id="how-works">
+                    <header class="major">
+                        <h2>How works ?</h2>
+                    </header>
+                    <article>
+                        <h3>View</h3>
+                        <p>Create your table with bootstrap or not, use all your logic with blade like normally, and use the blade directives of the package:</p>
+
+                        <div class="code-group-container">
+                            <div class="code-group">
+                                <header>Generate a script code to filter table without form, pass in param the selector of button will trigger your filter and inputs</header>
+                                <code>@autowherescript('.btn-filter', '.input-filter')</code>
+                                <footer>
+                                    <ul>
+                                        <li><b>param[0]: button selector</b> - default: '.btn-filter'</li>
+                                        <li><b>param[1]: text inside < a ></b> - default: '.input-filter'</li>
+                                    </ul>
+                                </footer>
+                            </div>
+                            <div class="code-group">
+                                <header>Generate a script code to async the reload table when paging, pass in 1st param many selectors elements will you want replace. In 2nd param the flag to change URL with page reloaded</header>
+                                <code>@autopagesasync('.panel-table')</code>
+                                <code>@autopagesasync(['.panel-table tbody', '.panel-table .panel-footer'])</code>
+                                <code>@autopagesasync(['.panel-table tbody', '.panel-table .panel-footer'], false)</code>
+                                <footer>
+                                    <ul>
+                                        <li><b>param[0]: replace selector</b> - required, string or array</li>
+                                        <li><b>param[1]: url change flag</b> - default: true</li>
+                                    </ul>
+                                </footer>
+                            </div>
+                            <div class="code-group">
+                                <header><h4>Usage:</h4></header>
+                                <pre class="brush: php">
+< head >
+@autowherescript('.btn-filter', '.input-filter')
+@autopagesasync('.panel-table')
+< /head >
+                                </pre>
+                            </div>
+                        </div>
+
+
+
+                        <div class="code-group-container">
+                            <div class="code-group">
+                                <header>Call column header title, when click sort this column will happen.</header>
+                                <code>@autosort('name','Nome')</code>
+                                <footer>
+                                    <ul>
+                                        <li><b>param[0]: column table</b> - required, can bring sql alias</li>
+                                        <li><b>param[1]: text inside < a ></b> - not required</li>
+                                    </ul>
+                                </footer>
+                            </div>
+                            <div class="code-group">
+                                <header>Bring the value previously used in filter to input tag value, to not loss when reload page.</header>
+                                <code>@autowherefilter('name')</code>
+                                <code>@autowherefilter('id', 1)</code>
+                                <code>@autowherefilter('id', 1, "checked")</code>
+                                <footer>
+                                    <p>Can pass 2nd param, thats indicates the tag is a select option. What to do? pass the option value in 2nd param and the return is "selected" if you filter with that option selected</p>
+                                    <p>You can overwrite "selected" return to other string, like "checked" when pass as 3rd param</p>
+                                </footer>
+                            </div>
+                            <div class="code-group">
+                                <header>Get a select tag with length of pagination, when change reload table with new length.</header>
+                                <code>@autopageslength($tickets)</code>
+                                <footer>
+                                    <ul>
+                                        <li><b>param[0]: Paginator</b> - use an Eloquent or QueryBuilder and finish the query with paginate() to get Paginator</li>
+                                    </ul>
+                                </footer>
+                            </div>
+                            <div class="code-group">
+                                <header>Get the pagination buttons.</header>
+                                <code>@autopages($tickets)</code>
+                                <footer>
+                                    <ul>
+                                        <li><b>param[0]: Paginator</b> - use an Eloquent or QueryBuilder and finish the query with paginate() to get Paginator</li>
+                                    </ul>
+                                </footer>
+                            </div>
+                            <div class="code-group">
+                                <header><h4>Usage:</h4></header>
+                                <pre class="brush: php; html-script: true">
+
+<div class="panel panel-table">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Registros
+        </h3>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr role="row">
+                <th>@autosort('t.protocol','Protocolo')</th>
+                <th>@autosort('t.start','Data Abertura')</th>
+                <th>@autosort('t.end','Data Fechamento')</th>
+                <th>@autosort('p.name','Portfolio')</th>
+                <th class="tc"><b class="fa fa-gear"></b></th>
+            </tr>
+            <tr>
+                <th><input type="text" class="form-control" name="t.id" value="@autowherefilter('t.protocol')"></th>
+                <th><input type="text" class="form-control datepicker" name="t.start" value="@autowherefilter('t.start')"></th>
+                <th><input type="text" class="form-control datepicker" name="t.end" value="@autowherefilter('t.end')"></th>
+                <th>
+                    <select name="p.id" multiple>
+                        <option value="1" @autowherefilter('p.id',1) >Portfolio 1</option>
+                        <option value="2" @autowherefilter("p.id",2) >Portfolio 2</option>
+                        <option value="3" @autowherefilter("p.id",3) >Portfolio 3</option>
+                    </select>
+                </th>
+                <th class="tc"><button class="btn btn-primary btn-filter"><i class="fa fa-search"></i></button></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($tickets as $ticket)
+                <tr>
+                    <td>{{$ticket->protocol}}</td>
+                    <td>{{$ticket->start}}</td>
+                    <td>{{$ticket->end}}</td>
+                    <td>{{$ticket->portfolio}}</td>
+                    <td class="tc">
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="col pull-left">
+            Mostrando @autopageslength($tickets) de {{$tickets->total()}}
+        </div>
+        <div class="col pull-right">
+            @autopages($tickets)
+        </div>
+    </div>
+</div>
+
+                                </pre>
+                            </div>
+
+
+                        </div>
+
+                        <br />
+                        <h3>Controller</h3>
+                        <p>Let's see it:</p>
+                        <pre class="brush: php">
+use App\Http\Controllers\Controller;
+use Auto\Facades\Auto;
+
+class TestsController extends Controller
+{
+
+    // without joins
+
+    public function autowhere(){
+        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate();
+        return view("tests.ticket",compact("tickets"));
+    }
+
+
+    // with joins
+
+    public function autowherealias()
+    {
+        $tickets = \App\Ticket::from('ticket as t')
+            ->select('t.id as id',
+                't.protocol as protocol',
+                't.start as start',
+                't.end as end',
+                'p.name as portfolio'
+            )
+            ->leftJoin('portfolio as p', 't.portfolio_id', '=', 'p.id')
+            ->autoWhere()
+            ->autoSort()
+            ->autoPaginate();
+        return view("tests.ticket_alias", compact("tickets"));
+    }
+
+
+    // with overwrite column type
+
+    public function autowhereoverwrite()
+    {
+        $tickets = \App\Ticket::from('ticket as t')
+            ->select('t.id as id',
+                't.protocol as protocol',
+                't.start as start',
+                't.end as end',
+                'p.name as portfolio'
+            )
+            ->leftJoin('portfolio as p', 't.portfolio_id', '=', 'p.id')
+            ->autoWhere([ 'columns' =>[ "p.name" => "equal" ] ]) // you can pass param here and overwrite the type of column to other
+            ->autoSort()
+            ->autoPaginate();
+        return view("tests.ticket_alias", compact("tickets"));
+    }
+
+
+    // with 'or' conditions - Ex. url: localhost/ocorrencias?filter[t.start]=21/05/2017&filter[t.end]=21/05/2017
+
+    public function autowhereor()
+    {
+        $tickets = \App\Ticket::from('ticket as t')
+            ->select('t.id as id',
+                't.protocol as protocol',
+                't.start as start',
+                't.end as end',
+                'p.name as portfolio'
+            )
+            ->leftJoin('portfolio as p', 't.portfolio_id', '=', 'p.id')
+            ->autoWhere([ 'or' =>[ "t.start", "t.end" ] ]) // you can pass param here and create 'or' conditions with columns you wish
+            ->autoSort()
+            ->autoPaginate();
+        // generate where: ' where ( t.start = 2017-05-21 OR t.end = 2017-05-21 ) '
+        return view("tests.ticket_alias", compact("tickets"));
+    }
+
+
+    // set default sort params if not has in url order,sort params
+    // this overwrite param setted in config file
+
+    public function autowheresort(){
+        $tickets = \App\Ticket::autoWhere()->autoSort( [ "id", "desc" ] )->autoPaginate(); // set columns and 'asc' or 'desc'
+        return view("tests.ticket",compact("tickets"));
+    }
+
+
+    // set default pagination length if not has in url length params
+    // this overwrite param setted in config file
+
+    public function autowherepaginate(){
+        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate( 10 ); // set overwrite default pagination
+        return view("tests.ticket",compact("tickets"));
+    }
+
+
+    // set default value to query column
+
+    public function autowheredefaultvalue(){
+        Auto::setDefaultField( 't.start', date("Y-m-d") );
+        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate(); // automatically get new field defaut value in Request filter param
+        return view("tests.ticket",compact("tickets"));
+    }
+
+    // set value of some column and type (will overwrite if pass column from url, use setDefaultValue to avoid)
+
+    public function autowheresetvalue(){
+        Auto::setField( 't.end', true );
+        Auto::setColumn( 't.end', 'null' );
+        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate();
+        // this will force t.end querying like null type:
+        // select * from tickets where t.end is null
+        return view("tests.ticket",compact("tickets"));
+    }
+}
+                        </pre>
+
+                        <p>Ok, where autoWhere, autoSort and autoPaginate come from ? See [Model] section to understand. It's very simple and light for your code, even I don't believe.</p>
+
+                        <br />
+                        <h3>Model</h3>
+                        <p>What happens here is simple too:</p>
+                        <pre class="brush: php">
+use Auto\AutoWhere;
+use Auto\AutoSort;
+use Auto\AutoPaginate;
+
+class Ticket extends Model
+{
+    use AutoWhere, AutoSort, AutoPaginate;
+    ...
+}
+                        </pre>
+                        <p>Just using traits, We manipulate the QueryBuilder until we get the expected result. Of course, with other magics.</p>
+                    </article>
+                    <footer>
+                    </footer>
+                </section>
+
+
+
+                <section id="how-to-install">
+                    <header class="major">
+                        <h2>How to install ?</h2>
+                    </header>
+                    <article>
+                        <p>Now the times arrived. check out:</p>
+
+                        <ol>
+                            <li>Download package with Composer
+                                <code>$ composer require maikealame/laravel-auto</code>
+                                <p>Check the <code>[composer.json]</code></p>
+                                <pre class="brush: plain">
+"require": {
+...
+"maikealame/laravel-auto": "*"
+}
+                                </pre>
+                            </li>
+                            <li>Add this package to your application service providers in config/app.php
+                                <pre class="brush: plain">
+'providers' => [
+...
+App\Providers\RouteServiceProvider::class,
+
+/*
+* Third Party Service Providers...
+*/
+Auto\AutoServiceProvider::class,
+],
+                                </pre>
+                            </li>
+                            <li>Publish the package configuration file to your application.</li>
+                            <code>$ php artisan vendor:publish --provider="Auto\AutoServiceProvider" --tag="config"</code>
+                            See file in <code>config/laravelauto.php</code>
+                        </ol>
+
+                    </article>
+                    <footer>
+                        <p>Now we done, take a coffe and start code.</p>
+
+                        <p>Any feedback it's welcome,
+                            <a href="https://github.com/maikealame/laravel-auto/issues" class="">issues</a>
+                            are here for it.</p>
+                    </footer>
+                </section>
+
+
+
+
+
+
+				<!--
 					<section id="three">
 						<h2>Get In Touch</h2>
 						<p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>
@@ -129,7 +645,7 @@
 						</div>
 					</section>
 
-				<!-- Four -->
+
 
 					<section id="four">
 						<h2>Elements</h2>
@@ -447,20 +963,25 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						</section>
 
 					</section>
+                -->
 
-                <section id="comentarios">
+
+
+
+
+
+                <section id="comments">
                     <div id="disqus_thread"></div>
                     <script>
 
                         /**
                          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
                          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-                        /*
+
                          var disqus_config = function () {
-                         this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                         this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                         this.page.url = "https://maikealame.github.io/laravel-auto/";  // Replace PAGE_URL with your page's canonical URL variable
+                         this.page.identifier = "home"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                          };
-                         */
                         (function() { // DON'T EDIT BELOW THIS LINE
                             var d = document, s = d.createElement('script');
                             s.src = 'https://laravel-auto.disqus.com/embed.js';
@@ -488,18 +1009,19 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					</ul>
                     <div class="donate">
                         <div class="row">
-                            <span class="title col-lg-12 col-md-12">Hey, Like it ? <br />Help to keep this work always updated and alive <i class="fa fa-smile-o text-sub"></i></span>
-
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="text-center col-lg-6 col-md-12">
+                            <span class="title col-sm-12">Hey, Like it ? <br />Help to keep this work always updated and alive <i class="fa fa-smile-o text-sub"></i></span>
+                        </div>
+                        <div class="row">
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="text-right col-md-12">
                                 <input type="hidden" name="cmd" value="_s-xclick">
-                                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-    ">
+                                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
                                 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                                 <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
                             </form>
-
+                        </div>
+                        <div class="row">
                             <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                            <form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post" class="text-center col-lg-6 col-sm-12">
+                            <form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post" class="text-right col-md-12">
                                 <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
                                 <input type="hidden" name="currency" value="BRL" />
                                 <input type="hidden" name="receiverEmail" value="maike.alame@gmail.com" />

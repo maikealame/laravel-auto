@@ -1,9 +1,3 @@
-/*
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
 (function($) {
 
 	var settings = {
@@ -109,18 +103,18 @@
 
 				}
 
-		// Main Sections: Two.
+		// Images modal
 
 			// Lightbox gallery.
 				$window.on('load', function() {
 
-					$('#two').poptrox({
-						caption: function($a) { return $a.next('h3').text(); },
+					$('body').poptrox({
+						caption: function($a) { if($a.next('.image-caption').length) return $a.next('.image-caption').text(); return $a.find("img").attr("alt"); },
 						overlayColor: '#2c2c2c',
 						overlayOpacity: 0.85,
 						popupCloserText: '',
 						popupLoaderText: '',
-						selector: '.work-item a.image',
+						selector: '.image-modal',
 						usePopupCaption: true,
 						usePopupDefaultStyling: false,
 						usePopupEasyClose: false,
@@ -129,6 +123,15 @@
 					});
 
 				});
+
+
+		// $.get("README.md",{},function(data){
+		// 	$("#markdown").html(markdown.toHTML(data));
+		// });
+
+
+		SyntaxHighlighter.highlight();
+
 
 	});
 
