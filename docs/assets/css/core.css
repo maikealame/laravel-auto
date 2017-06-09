@@ -51,7 +51,7 @@ form{
 #header .image.avatar{
     width:12em;
     height:10em;
-    background: url('/images/logo-t.png') no-repeat center center;
+    background: url('../../images/logo-t.png') no-repeat center center;
     background-size: cover;
     border-radius:0;
 }
