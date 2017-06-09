@@ -244,20 +244,20 @@
                     </header>
                     <article>
                         <p>See below:</p>
-                        <p><code>[url] http://localhost/ocorrencias?sort=id&order=desc&filter[t.protocol]=<7</code></p>
+                        <p><code>[url] http://localhost/tickets?sort=id&order=desc&filter[t.protocol]=<7</code></p>
                         <div class="row">
                             <article class="col-md-12">
                                 <a href="images/examples/1.png" class="image fit thumb image-modal">
-                                    <img src="images/examples/1.png" alt="http://localhost/ocorrencias?sort=id&order=desc&filter[t.protocol]=<7" class=""/>
+                                    <img src="images/examples/1.png" alt="http://localhost/tickets?sort=id&order=desc&filter[t.protocol]=<7" class=""/>
                                 </a>
                             </article>
                         </div>
                         <br />
-                        <p><code>[url] http://gsa.localhost/monitoramento/alertas?filter[a.status]=opened&filter[type]=geofence</code></p>
+                        <p><code>[url] http://gsa.localhost/monitoring/alerts?filter[a.status]=opened&filter[type]=geofence</code></p>
                         <div class="row">
                             <article class="col-md-12">
                                 <a href="images/examples/2.png" class="image fit thumb image-modal">
-                                    <img src="images/examples/2.png" alt="http://gsa.localhost/monitoramento/alertas?filter[a.status]=opened&filter[type]=geofence" class=""/>
+                                    <img src="images/examples/2.png" alt="http://gsa.localhost/monitoring/alerts?filter[a.status]=opened&filter[type]=geofence" class=""/>
                                 </a>
                             </article>
                         </div>
@@ -473,7 +473,7 @@ class TestsController extends Controller
     }
 
 
-    // with 'or' conditions - Ex. url: localhost/ocorrencias?filter[t.start]=21/05/2017&filter[t.end]=21/05/2017
+    // with 'or' conditions - Ex. url: localhost/tickets?filter[t.start]=21/05/2017&filter[t.end]=21/05/2017
 
     public function autowhereor()
     {
