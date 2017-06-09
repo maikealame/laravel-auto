@@ -1,3 +1,10 @@
+@import url("xl.css") screen and (max-width: 1800px);
+@import url("lg.css") screen and (max-width: 1280px);
+@import url("md.css") screen and (max-width: 980px);
+@import url("sm.css") handheld;
+@import url("sm.css") screen and (max-width: 736px);
+@import url("xs.css") handheld and (max-width: 480px);
+@import url("xs.css") screen and (max-width: 480px);
 @import url("main.css");
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:600');

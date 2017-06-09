@@ -130,7 +130,7 @@
 					</section>
 
 				<!-- Four -->
-				<!--
+
 					<section id="four">
 						<h2>Elements</h2>
 
@@ -447,7 +447,29 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						</section>
 
 					</section>
-				-->
+
+                <section id="comentarios">
+                    <div id="disqus_thread"></div>
+                    <script>
+
+                        /**
+                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                        /*
+                         var disqus_config = function () {
+                         this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                         this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                         };
+                         */
+                        (function() { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://laravel-auto.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </section>
 
 			</div>
 
@@ -459,6 +481,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						<li><a href="https://www.linkedin.com/in/maike-alame/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
                         <li><a href="https://www.facebook.com/MaikeAlame" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
                         <li><a href="mailto:maike.alame@gmail.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                        <li><a href="#disqus_thread"></a></li>
 					</ul>
 					<ul class="copyright">
 						<!--<li>&copy; Untitled</li><li>Design: <a href="#"></a></li>-->
@@ -492,4 +515,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 
 	</body>
+
+    <script id="dsq-count-scr" src="//laravel-auto.disqus.com/count.js" async></script>
 </html>
