@@ -8,7 +8,7 @@ a Laravel helper package to make ~~all~~ almost everything in your projects
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/1.png)
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/2.png)
 
-See [https://maikealame.github.io/laravel-auto/]
+See https://maikealame.github.io/laravel-auto/
 
 ---
 
