@@ -31,6 +31,10 @@ body a:hover{
     text-decoration: none;
     border-bottom:1px solid;
 }
+body a.button:hover{
+    text-decoration: none;
+    border:3px solid #49bf9d;
+}
 
 .text-main{
     color:#49bf9d;
