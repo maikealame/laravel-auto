@@ -66,11 +66,24 @@ trait AutoWhere
                     return stristr( $var, "SoftDelet" ) ? $key : false;
                 }
             ) ) ) {
-                if ($this->getTableOrAlias($qb) != $this->getTable()) // table not equal table, maybe "table as t"
-                    if(Request::has("show_disabled")){
+//                if ($this->getTableOrAlias($qb) != $this->getTable()) // table not equal table, maybe "table as t"
+                if(Request::has("show_disabled")){
+                    $query = $query->withTrashed();
+                }elseif(Request::has("trashed")){
+                    if(Request::get("trashed") == 0){ // without
+//                            $query = $query->withoutTrashed();
+                        $query = $query->withTrashed()->whereNull($this->getTableOrAlias($qb) . ".deleted_at");
+                    }
+                    if(Request::get("trashed") == 1){ // with
+//                            $query = $query->withTrashed();
                         $query = $query->withTrashed();
-                    }else
-                        $query = $query->withTrashed()->where($this->getTableOrAlias($qb) . ".deleted_at");
+                    }
+                    if(Request::get("trashed") == 2){ // only
+//                            $query = $query->onlyTrashed();
+                        $query = $query->withTrashed()->whereNotNull($this->getTableOrAlias($qb) . ".deleted_at");
+                    }
+                }else
+                    $query = $query->withTrashed()->where($this->getTableOrAlias($qb) . ".deleted_at");
             }
         }
 

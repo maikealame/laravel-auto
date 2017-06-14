@@ -80,6 +80,9 @@ body a.button:hover{
     background-size: cover;
     border-radius:0;
 }
+#header .image.avatar:hover{
+    border-bottom:none;
+}
 
 #header h1 strong{
     font-size:2em;

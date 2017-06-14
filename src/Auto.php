@@ -88,6 +88,33 @@ class Auto implements AutoInterface
         Request::merge(["columns"=>array_merge(Request::get("columns"),[$column=>$value])]);
     }
 
+    /**
+     * set withTrashed soft delete
+     *
+     * @return void
+     */
+    public function withTrashed(){
+        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 1]);
+    }
+
+    /**
+     * set withoutTrashed soft delete
+     *
+     * @return void
+     */
+    public function withoutTrashed(){
+        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 0]);
+    }
+
+    /**
+     * set onlyTrashed soft delete
+     *
+     * @return void
+     */
+    public function onlyTrashed(){
+        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 2]);
+    }
+
 
 
     /**

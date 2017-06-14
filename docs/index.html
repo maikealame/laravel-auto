@@ -349,7 +349,7 @@
                                 <code>@autowherefilter('id', 1)</code>
                                 <code>@autowherefilter('id', 1, "checked")</code>
                                 <footer>
-                                    <p>Can pass 2nd param, thats indicates the tag is a select option. What to do? pass the option value in 2nd param and the return is "selected" if you filter with that option selected</p>
+                                    <p>Can pass 2nd param, thats indicates the tag is a select option. What to do? pass the html option value in 2nd param and get "selected" return if you filter match with this 2nd param.</p>
                                     <p>You can overwrite "selected" return to other string, like "checked" when pass as 3rd param</p>
                                 </footer>
                             </div>
@@ -358,7 +358,7 @@
                                 <code>@autopageslength($tickets)</code>
                                 <footer>
                                     <ul>
-                                        <li><b>param[0]: Paginator</b> - use an Eloquent or QueryBuilder and finish the query with paginate() to get Paginator</li>
+                                        <li><b>param[0]: Paginator</b> - use an Eloquent or QueryBuilder and finish the query with paginate() or autoPaginate() to get Paginator</li>
                                     </ul>
                                 </footer>
                             </div>
@@ -367,7 +367,7 @@
                                 <code>@autopages($tickets)</code>
                                 <footer>
                                     <ul>
-                                        <li><b>param[0]: Paginator</b> - use an Eloquent or QueryBuilder and finish the query with paginate() to get Paginator</li>
+                                        <li><b>param[0]: Paginator</b> - use an Eloquent or QueryBuilder and finish the query with paginate() or autoPaginate() to get Paginator</li>
                                     </ul>
                                 </footer>
                             </div>
@@ -397,9 +397,9 @@
                 <th><input type="text" class="form-control datepicker" name="t.end" value="@autowherefilter('t.end')"></th>
                 <th>
                     <select name="p.id" multiple>
-                        <option value="1" @autowherefilter('p.id',1) >Portfolio 1</option>
-                        <option value="2" @autowherefilter("p.id",2) >Portfolio 2</option>
-                        <option value="3" @autowherefilter("p.id",3) >Portfolio 3</option>
+                        <option value="1" selected="@autowherefilter('p.id',1)" >Portfolio 1</option>
+                        <option value="2" selected="@autowherefilter('p.id',2)" >Portfolio 2</option>
+                        <option value="3" selected="@autowherefilter('p.id',3)" >Portfolio 3</option>
                     </select>
                 </th>
                 <th class="tc"><button class="btn btn-primary btn-filter"><i class="fa fa-search"></i></button></th>
@@ -514,7 +514,8 @@ class TestsController extends Controller
     // set default sort params if not has in url order,sort params
     // this overwrite param setted in config file
 
-    public function autowheresort(){
+    public function autowheresort()
+    {
         $tickets = \App\Ticket::autoWhere()->autoSort( [ "id", "desc" ] )->autoPaginate(); // set columns and 'asc' or 'desc'
         return view("tests.ticket",compact("tickets"));
     }
@@ -523,7 +524,8 @@ class TestsController extends Controller
     // set default pagination length if not has in url length params
     // this overwrite param setted in config file
 
-    public function autowherepaginate(){
+    public function autowherepaginate()
+    {
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate( 10 ); // set overwrite default pagination
         return view("tests.ticket",compact("tickets"));
     }
@@ -531,7 +533,8 @@ class TestsController extends Controller
 
     // set default value to query column
 
-    public function autowheredefaultvalue(){
+    public function autowheredefaultvalue()
+    {
         Auto::setDefaultField( 't.start', date("Y-m-d") );
 
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate(); // automatically get new field defaut value in Request filter param
@@ -540,13 +543,28 @@ class TestsController extends Controller
 
     // set value of some column and type (will overwrite if pass column from url, use setDefaultValue to avoid)
 
-    public function autowheresetvalue(){
+    public function autowheresetvalue()
+    {
         Auto::setField( 't.end', true );
         Auto::setColumn( 't.end', 'null' );
 
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate();
         // this will force t.end querying like null type:
         // select * from tickets where t.end is null
+        return view("tests.ticket",compact("tickets"));
+    }
+
+    // Using Soft Delete
+
+    public function autowheresoftdelete()
+    {
+        Auto::withTrashed();
+        // Auto::withoutTrashed();
+        // Auto::onlyTrashed();
+        // This method not overwrite http get param, if you pass url?trashed=2 the onlyTrashed will overwrite all methods !
+        // http get param Possibilities: trashed=0 (withoutTrashed), trashed=1 (withTrashed), trashed=2 (onlyTrashed)
+
+        $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate();
         return view("tests.ticket",compact("tickets"));
     }
 }
