@@ -4,3 +4,6 @@
     height:auto !important;
     max-height:none !important;
 }
+#main > section > article {
+    word-break: break-all;
+}
