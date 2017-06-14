@@ -1,5 +1,5 @@
 # [LaravelAuto](https://maikealame.github.io/laravel-auto/)
-a Laravel helper package to make ~~all~~ almost everything in your projects
+a Laravel helper package to make almost everything in your projects
 
 [![Latest Version](https://img.shields.io/github/release/maikealame/laravel-auto.svg?style=flat-square)](https://github.com/maikealame/laravel-auto/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -19,6 +19,6 @@ See https://maikealame.github.io/laravel-auto/
 - [Examples](https://maikealame.github.io/laravel-auto#example)
 - [How works](https://maikealame.github.io/laravel-auto#how-works)
 1. [View](https://maikealame.github.io/laravel-auto#view)
-1. [Controller](https://maikealame.github.io/laravel-auto#controller)
-1. [Model](https://maikealame.github.io/laravel-auto#model)
+2. [Controller](https://maikealame.github.io/laravel-auto#controller)
+3. [Model](https://maikealame.github.io/laravel-auto#model)
 - [How to install](https://maikealame.github.io/laravel-auto#how-to-install)
