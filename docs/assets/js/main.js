@@ -121,8 +121,11 @@
 						usePopupCaption: true,
 						usePopupDefaultStyling: false,
 						usePopupEasyClose: false,
-						usePopupNav: true,
-						windowMargin: (skel.breakpoint('small').active ? 0 : 50)
+						usePopupNav: false,
+						windowMargin: (skel.breakpoint('small').active ? 0 : 50),
+                        popupWidth: $("body").width(),
+                        popupHeight: 'auto',
+                        popupIsFixed: (!!skel.breakpoint('medium').active),
 					});
 
 				});

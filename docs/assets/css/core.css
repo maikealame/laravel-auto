@@ -199,3 +199,12 @@ ul.icon-list > li::before{
     width: 1.4em; /* same as padding-left set on li */
     color:#da3e00;
 }
+
+
+.poptrox-popup .pic{
+    overflow:auto;
+}
+.poptrox-popup .closer:before {
+    text-shadow: 0px 1px 3px black;
+    box-shadow: 0px 1px 2px 0px black;
+}
