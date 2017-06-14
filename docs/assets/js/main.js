@@ -126,6 +126,9 @@
                         popupWidth: $("body").width(),
                         popupHeight: 'auto',
                         popupIsFixed: (!!skel.breakpoint('medium').active),
+                        onPopupOpen: function(){
+                            $(".poptrox-overlay").off("touchmove");
+						}
 					});
 
 				});
