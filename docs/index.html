@@ -369,6 +369,11 @@
                                 <header><h4>Usage:</h4></header>
                                 <pre class="brush: php; html-script: true">
 
+<!-- Can put anywhere like <head> -->
+@autowherescript('.btn-filter', '.input-filter')
+@autopagesasync('.panel-table')
+
+<!-- Your content in <body>, it's possible to create any layout like table, card, etc. -->
 <div class="panel panel-table">
     <div class="panel-heading">
         <h3 class="panel-title">
@@ -386,11 +391,11 @@
                 <th class="tc"><b class="fa fa-gear"></b></th>
             </tr>
             <tr>
-                <th><input type="text" class="form-control" name="t.id" value="@autowherefilter('t.protocol')"></th>
-                <th><input type="text" class="form-control datepicker" name="t.start" value="@autowherefilter('t.start')"></th>
-                <th><input type="text" class="form-control datepicker" name="t.end" value="@autowherefilter('t.end')"></th>
+                <th><input type="text" class="form-control input-filter" name="t.id" value="@autowherefilter('t.protocol')"></th>
+                <th><input type="date" class="form-control input-filter" name="t.start" value="@autowherefilter('t.start')"></th>
+                <th><input type="date" class="form-control input-filter" name="t.end" value="@autowherefilter('t.end')"></th>
                 <th>
-                    <select name="p.id" multiple>
+                    <select name="p.id" multiple class="input-filter">
                         <option value="1" selected="@autowherefilter('p.id',1)" >Portfolio 1</option>
                         <option value="2" selected="@autowherefilter('p.id',2)" >Portfolio 2</option>
                         <option value="3" selected="@autowherefilter('p.id',3)" >Portfolio 3</option>
