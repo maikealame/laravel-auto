@@ -142,7 +142,7 @@ class AutoPaginateBlade
                 }
                 return params;
             }
-            $(".pagination-length").change(function(){
+            $("body").on("change",".pagination-length",function(){
                 var p = lengthGetUrlParameters();
                 delete p["page"];
                 p.length = $(this).val();
