@@ -140,6 +140,7 @@
 
 
 		SyntaxHighlighter.highlight();
+        // SyntaxHighlighter.all();
 
 
 	});

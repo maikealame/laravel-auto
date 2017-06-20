@@ -44,6 +44,10 @@
         <script src="vendor/SyntaxHighlighter/scripts/shBrushPlain.js"></script>
         <script src="vendor/SyntaxHighlighter/scripts/shBrushXml.js"></script>
 
+        <!--<script src="vendor/SyntaxHighlighter/syntaxhighlighter.js"></script>-->
+
+
+
         <!--<script src="vendor/markdown-js/lib/markdown.js"></script>-->
 	</head>
 	<body id="top" class="is-loading">
@@ -315,7 +319,7 @@
                             </div>
                             <div class="code-group">
                                 <header><h4>Usage:</h4></header>
-                                <pre class="brush: php">
+                                <pre class="brush:php">
 < head >
 @autowherescript('.btn-filter', '.input-filter')
 @autopagesasync('.panel-table')
@@ -367,7 +371,7 @@
                             </div>
                             <div class="code-group">
                                 <header><h4>Usage:</h4></header>
-                                <pre class="brush: php; html-script: true">
+                                <pre class="brush:php">
 
 <!-- Can put anywhere like <head> -->
 @autowherescript('.btn-filter', '.input-filter')
@@ -396,9 +400,9 @@
                 <th><input type="date" class="form-control input-filter" name="t.end" value="@autowherefilter('t.end')"></th>
                 <th>
                     <select name="p.id" multiple class="input-filter">
-                        <option value="1" selected="@autowherefilter('p.id',1)" >Portfolio 1</option>
-                        <option value="2" selected="@autowherefilter('p.id',2)" >Portfolio 2</option>
-                        <option value="3" selected="@autowherefilter('p.id',3)" >Portfolio 3</option>
+                        <option value="1" @autowherefilter('p.id',1) >Portfolio 1</option>
+                        <option value="2" @autowherefilter('p.id',2) >Portfolio 2</option>
+                        <option value="3" @autowherefilter('p.id',3) >Portfolio 3</option>
                     </select>
                 </th>
                 <th class="tc"><button class="btn btn-primary btn-filter"><i class="fa fa-search"></i></button></th>
@@ -437,7 +441,7 @@
                         <br />
                         <h3 id="controller">Controller</h3>
                         <p>Let's see it:</p>
-                        <pre class="brush: php">
+                        <pre class="brush:php">
 use App\Http\Controllers\Controller;
 use Auto\Facades\Auto;
 
@@ -575,7 +579,7 @@ class TestsController extends Controller
                         <br />
                         <h3 id="model">Model</h3>
                         <p>What happens here is simple too:</p>
-                        <pre class="brush: php">
+                        <pre class="brush:php">
 use Auto\AutoWhere;
 use Auto\AutoSort;
 use Auto\AutoPaginate;
@@ -605,7 +609,7 @@ class Ticket extends Model
                             <li>Download package with Composer
                                 <code>$ composer require maikealame/laravel-auto</code>
                                 <p>Check the <code>[composer.json]</code></p>
-                                <pre class="brush: plain">
+                                <pre class="brush:plain">
 "require": {
 ...
 "maikealame/laravel-auto": "*"
@@ -613,7 +617,7 @@ class Ticket extends Model
                                 </pre>
                             </li>
                             <li>Add this package to your application service providers in config/app.php
-                                <pre class="brush: plain">
+                                <pre class="brush:plain">
 'providers' => [
 ...
 App\Providers\RouteServiceProvider::class,
