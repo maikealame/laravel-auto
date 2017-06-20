@@ -49,13 +49,13 @@ trait AutoWhere
         // Or options
 
         if(isset($options["or"])){
-            $autowhere->or($options["or"]);
+            $autowhere->_class->or($options["or"]);
         }
 
         // Columns options
 
         if(isset($options["columns"])){
-            $autowhere->columns($options["columns"]);
+            $autowhere->_class->columns($options["columns"]);
         }
 
         // fix error of soft Delete -> column deleted_at not found
