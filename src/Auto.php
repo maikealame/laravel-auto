@@ -15,6 +15,8 @@ class Auto implements AutoInterface
     public $_config;
     public $_db;
     public $_dbtype;
+    public $having = [];
+    public $fields = [];
 
     /**
      * Create a new AutoWhere instance.
@@ -54,8 +56,31 @@ class Auto implements AutoInterface
      */
     public function get(){
         $where = Request::get('filter') ? Request::get('filter') : [];
+        foreach($this->fields as $k=>$v){
+            $where[$k] = $v;
+        }
+        $having = Request::get('filter_having') ? Request::get('filter_having') : [];
+        foreach($having as $k=>$v){ unset($where[$k]); }
         $columns = Request::get('columns') ? Request::get('columns') : [];
         return $this->_class->columns($columns)->render($where);
+    }
+
+    /**
+     * get quickly having sql without params
+     *
+     * @return string
+     */
+    public function getHaving(){
+        $where = Request::get('filter') ? Request::get('filter') : [];
+        foreach($this->fields as $k=>$v){
+            $where[$k] = $v;
+        }
+        $hav = Request::get('filter_having') ? Request::get('filter_having') : [];
+        $having = array_filter($where,function($key) use($hav){
+            return in_array($key,array_keys($hav));
+        },ARRAY_FILTER_USE_KEY);
+        $r = $this->_class->columns($hav)->render($having);
+        return  trim($r) == "true" ? "true" : $r;
     }
 
 
@@ -74,8 +99,9 @@ class Auto implements AutoInterface
      * @return void
      */
     public function setField($column, $value){
-        Request::has("filter") ?: Request::merge(["filter"=>[]]);
-        Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
+//        Request::has("filter") ?: Request::merge(["filter"=>[]]);
+//        Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
+        $this->fields = array_merge($this->fields,[$column=>$value]);
     }
 
     /**
@@ -83,9 +109,9 @@ class Auto implements AutoInterface
      *
      * @return void
      */
-    public function setColumn($column, $value){
+    public function setColumn($column, $type){
         Request::has("columns") ?: Request::merge(["columns"=>[]]);
-        Request::merge(["columns"=>array_merge(Request::get("columns"),[$column=>$value])]);
+        Request::merge(["columns"=>array_merge(Request::get("columns"),[$column=>$type])]);
     }
 
     /**
@@ -106,6 +132,7 @@ class Auto implements AutoInterface
         Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 0]);
     }
 
+
     /**
      * set onlyTrashed soft delete
      *
@@ -115,6 +142,32 @@ class Auto implements AutoInterface
         Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 2]);
     }
 
+
+
+    /**
+     * set ignore filter
+     *
+     * @return void
+     */
+    public function ignore($column){
+        Request::has("filter_ignore") ?: Request::merge(["filter_ignore"=>[]]);
+        Request::merge(["filter_ignore"=>array_push(Request::get("filter_ignore"),$column)]);
+    }
+
+
+    /**
+     * set having filter, excludes from 'where' on query
+     *
+     * @return void
+     */
+    public function having($column, $type = null){
+        Request::has("filter_having") ?: Request::merge(["filter_having"=>[]]);
+        Request::merge(["filter_having"=>
+            is_array($column) ?
+                array_merge(Request::get("filter_having"),$column) :
+                array_push(Request::get("filter_having"),[$column=>$type])
+        ]);
+    }
 
 
     /**

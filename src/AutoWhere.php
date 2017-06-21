@@ -58,6 +58,16 @@ trait AutoWhere
             $autowhere->_class->columns($options["columns"]);
         }
 
+        // Having options
+
+        if(isset($options["having"])){
+            $autowhere->having = array_merge($autowhere->having,$options["having"]);
+        }
+        if(Request::has("filter_having")){
+            $autowhere->having = array_merge($autowhere->having,Request::get("filter_having"));
+        }
+
+
         // fix error of soft Delete -> column deleted_at not found
         if( $this->forceDeleting !== null ){ // is using soft delete
             if( empty( array_filter( // not using withTrashed()
@@ -86,6 +96,8 @@ trait AutoWhere
                     $query = $query->withTrashed()->where($this->getTableOrAlias($qb) . ".deleted_at");
             }
         }
+
+        if(count($autowhere->having)) $query->havingRaw( $autowhere->getHaving() );
 
         return $query->whereRaw( $autowhere->get() );
     }
