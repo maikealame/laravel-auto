@@ -570,6 +570,21 @@ class TestsController extends Controller
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate();
         return view("tests.ticket",compact("tickets"));
     }
+
+    // Using Having clause method
+    // [note]: This example will active the having if url has filter[difference] like this url:
+    // localhost/tickets?filter[difference]=86400 (one day example)
+    // localhost/tickets?filter[difference]=>86400 (greater than one day example)
+
+    public function autowherehaving()
+    {
+        Auto::having("difference","int");
+        // Auto::having(["key"=>"type","key2"=>"type2"]);
+        $tickets = \App\Ticket::select("ticket.*")->addSelect(DB::raw("TIMESTAMPDIFF(SECOND, ticket.start, ticket.end) as difference"))
+                ->autoWhere()->autoSort()->autoPaginate();
+        return view("tests.ticket",compact("tickets"));
+    }
+    // 'TIMESTAMPDIFF' is for mysql, while using postgresql use extract(epoch from end - start) to get seconds
 }
                         </pre>
 
