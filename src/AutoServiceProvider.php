@@ -63,32 +63,32 @@ class AutoServiceProvider extends ServiceProvider
 
 
         $blade->directive('autowherescript', function ($expression) {
-            if ($expression[0] === '(') $expression = trim($expression, '()');
+            if(isset($expression)) if ($expression[0] === '(') $expression = trim($expression, '()');
             return "<?php echo \Auto\AutoWhereBlade::script(array ({$expression}));?>";
         });
 
         $blade->directive('autowherefilter', function ($expression) {
-            if ($expression[0] === '(') $expression = trim($expression, '()');
+            if(isset($expression)) if ($expression[0] === '(') $expression = trim($expression, '()');
             return "<?php echo \Auto\AutoWhereBlade::filter(array ({$expression}));?>";
         });
 
         $blade->directive('autosort', function ($expression) {
-            if ($expression[0] === '(') $expression = trim($expression, '()');
+            if(isset($expression)) if ($expression[0] === '(') $expression = trim($expression, '()');
             return "<?php echo \Auto\AutoSortBlade::sort(array ({$expression}));?>";
         });
 
         $blade->directive('autopages', function ($expression) {
-            if ($expression[0] === '(') $expression = trim($expression, '()');
+            if(isset($expression)) if ($expression[0] === '(') $expression = trim($expression, '()');
             return "<?php echo \Auto\AutoPaginateBlade::pages(array ({$expression}));?>";
         });
 
         $blade->directive('autopagesasync', function ($expression) {
-            if ($expression[0] === '(') $expression = trim($expression, '()');
+            if(isset($expression)) if ($expression[0] === '(') $expression = trim($expression, '()');
             return "<?php echo \Auto\AutoPaginateBlade::async(array ({$expression}));?>";
         });
 
         $blade->directive('autopageslength', function ($expression) {
-            if ($expression[0] === '(') $expression = trim($expression, '()');
+            if(isset($expression)) if ($expression[0] === '(') $expression = trim($expression, '()');
             return "<?php echo \Auto\AutoPaginateBlade::length(array ({$expression}));?>";
         });
     }
