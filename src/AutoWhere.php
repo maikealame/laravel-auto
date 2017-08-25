@@ -10,6 +10,8 @@ use Auto\Facades\Auto;
  */
 trait AutoWhere
 {
+    private $autoTrash = null;
+
     /**
      * @param \Illuminate\Database\Query\Builder $query
      * @param array|null                         $where
@@ -79,16 +81,18 @@ trait AutoWhere
 //                if ($this->getTableOrAlias($qb) != $this->getTable()) // table not equal table, maybe "table as t"
                 if(Request::has("show_disabled")){
                     $query = $query->withTrashed();
+                }elseif(Request::has("only_disabled")){
+                    $query = $query->onlyTrashed();
                 }elseif(Request::has("trashed")){
-                    if(Request::get("trashed") == 0){ // without
+                    if(!is_null($this->autoTrash) ? $this->autoTrash : Request::get("trashed") == 0){ // without
 //                            $query = $query->withoutTrashed();
                         $query = $query->withTrashed()->whereNull($this->getTableOrAlias($qb) . ".deleted_at");
                     }
-                    if(Request::get("trashed") == 1){ // with
+                    if(!is_null($this->autoTrash) ? $this->autoTrash : Request::get("trashed") == 1){ // with
 //                            $query = $query->withTrashed();
                         $query = $query->withTrashed();
                     }
-                    if(Request::get("trashed") == 2){ // only
+                    if(!is_null($this->autoTrash) ? $this->autoTrash : Request::get("trashed") == 2){ // only
 //                            $query = $query->onlyTrashed();
                         $query = $query->withTrashed()->whereNotNull($this->getTableOrAlias($qb) . ".deleted_at");
                     }
@@ -113,22 +117,73 @@ trait AutoWhere
         }
     }
 
+    /**
+     * set field value for one column in the query
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
     public function scopeAutoSetField($query, $column, $value, $type = null)
     {
         Auto::setField($column, $value);
         if($type){
             Auto::setColumn($column, $type);
         }
+        return $query;
     }
+
+    /**
+     * set default field value for one column in the query
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
     public function scopeAutoSetDefaultField($query, $column, $value, $type = null)
     {
         Auto::setDefaultField($column, $value);
         if($type){
             Auto::setColumn($column, $type);
         }
+        return $query;
     }
+
+    /**
+     * set column type in the query
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
     public function scopeAutoSetColumn($query, $column, $type)
     {
         Auto::setColumn($column, $type);
+        return $query;
+    }
+
+    /**
+     * set withTrashed soft delete
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeAutoWithTrashed($query){
+        $this->autoTrash = 1;
+        return $query;
+    }
+
+    /**
+     * set withoutTrashed soft delete
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeAutoWithoutTrashed($query){
+        $this->autoTrash = 0;
+        return $query;
+    }
+
+
+    /**
+     * set onlyTrashed soft delete
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeAutoOnlyTrashed($query){
+        $this->autoTrash = 2;
+        return $query;
     }
 }
