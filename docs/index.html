@@ -534,7 +534,7 @@ class TestsController extends Controller
     }
 
 
-    // set default value to query column
+    // set default value to query column (will overwrite if pass column from url param, use setField to avoid)
 
     public function autowheredefaultvalue()
     {
@@ -544,7 +544,7 @@ class TestsController extends Controller
         return view("tests.ticket",compact("tickets"));
     }
 
-    // set value of some column and type (will overwrite if pass column from url, use setDefaultValue to avoid)
+    // set value of some column and type (never change until you use this method again)
 
     public function autowheresetvalue()
     {
