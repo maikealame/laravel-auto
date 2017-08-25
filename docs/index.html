@@ -543,6 +543,17 @@ class TestsController extends Controller
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate(); // automatically get new field defaut value in Request filter param
         return view("tests.ticket",compact("tickets"));
     }
+    // or
+    public function autowheredefaultvaluechained()
+    {
+        $tickets = \App\Ticket::autoSetDefaultField( 't.start', date("Y-m-d"), "date" )->autoWhere()->autoSort()->autoPaginate();
+            // autoSetDefaultField(
+            //     $column,
+            //     $value,
+            //     $type //optional
+            // )
+        return view("tests.ticket",compact("tickets"));
+    }
 
     // set value of some column and type (never change until you use this method again)
 
@@ -554,6 +565,17 @@ class TestsController extends Controller
         $tickets = \App\Ticket::autoWhere()->autoSort()->autoPaginate();
         // this will force t.end querying like null type:
         // select * from tickets where t.end is null
+        return view("tests.ticket",compact("tickets"));
+    }
+    // or
+    public function autowheresetvaluechained()
+    {
+        $tickets = \App\Ticket::autoSetField( 't.end', true )->autoSetColumn( 't.end', 'null' );
+                ->autoWhere()->autoSort()->autoPaginate();
+        // or
+        $tickets = \App\Ticket::autoSetField( 't.end', true, 'null' );
+                ->autoWhere()->autoSort()->autoPaginate();
+
         return view("tests.ticket",compact("tickets"));
     }
 

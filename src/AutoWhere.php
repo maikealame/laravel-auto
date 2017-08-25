@@ -112,4 +112,23 @@ trait AutoWhere
             return $qb->from;
         }
     }
+
+    public function scopeAutoSetField($query, $column, $value, $type = null)
+    {
+        Auto::setField($column, $value);
+        if($type){
+            Auto::setColumn($column, $type);
+        }
+    }
+    public function scopeAutoSetDefaultField($query, $column, $value, $type = null)
+    {
+        Auto::setDefaultField($column, $value);
+        if($type){
+            Auto::setColumn($column, $type);
+        }
+    }
+    public function scopeAutoSetColumn($query, $column, $type)
+    {
+        Auto::setColumn($column, $type);
+    }
 }
