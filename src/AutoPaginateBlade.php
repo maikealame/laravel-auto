@@ -33,12 +33,16 @@ class AutoPaginateBlade
             $("body").on("click",".pagination a",function(e){
                 e.preventDefault();
                 var url = $(this).attr("href");
+                __autoLoadAsync(url);
+            });
+            
+            function __autoLoadAsync(url){
                 $.get(url,{},function(data){
                     '.$replace.'
                     var pagetitle = $(data).find("title").text() || $("title").text();';
         if($changeUrl) $r .= 'window.history.pushState({"html":data,"pageTitle":pagetitle}, pagetitle, url);';
         $r .=   '});
-            });
+            }
         });
         </script>';
         return $r;
@@ -48,6 +52,7 @@ class AutoPaginateBlade
     public static function pages($param){
         if(isset( $param[0] ))
             return $param[0]->appends(Request::except('page'))->render();
+        return null;
     }
 
     public static function length($param){
@@ -146,7 +151,10 @@ class AutoPaginateBlade
                 var p = lengthGetUrlParameters();
                 delete p["page"];
                 p.length = $(this).val();
-                window.location.href = window.location.href.split("?")[0] + "?" + $.param( p );
+                if(typeof __autoLoadAsync == "function"){
+                    __autoLoadAsync(window.location.href.split("?")[0] + "?" + $.param( p ));
+                }else
+                    window.location.href = window.location.href.split("?")[0] + "?" + $.param( p );
             });
         </script>';
         return $r;

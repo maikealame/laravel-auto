@@ -136,7 +136,11 @@ class AutoWhereBlade
             if($.map(p, function(n, i) { return i; }).length > 0) {
                 final = "?" + $.param(p);
             }
-            window.location.href = window.location.href.split("?")[0] + final;
+            
+            if(typeof window.__autoLoadAsync == "function"){
+                window.__autoLoadAsync(window.location.href.split("?")[0] + final);
+            }else
+                window.location.href = window.location.href.split("?")[0] + final;
         }
         
         function addUrlParameter(key,value){
@@ -155,7 +159,11 @@ class AutoWhereBlade
 
             _url += key;
             if( typeof value != "undefined" ) _url += "="+value;
-            window.location.href = _url;
+            
+            if(typeof window.__autoLoadAsync == "function"){
+                window.__autoLoadAsync(_url);
+            }else
+                window.location.href = _url;
         }
         function removeUrlParameter(key){
                 var sourceURL = location.href;
@@ -173,7 +181,11 @@ class AutoWhereBlade
                 }
                 rtn = rtn + "?" + params_arr.join("&");
             }
-            window.location.href = rtn;
+            
+            if(typeof window.__autoLoadAsync == "function"){
+                window.__autoLoadAsync(rtn);
+            }else
+                window.location.href = rtn;
         }
         
         var printArray = function(o){
