@@ -1,6 +1,8 @@
 # [LaravelAuto](https://maikealame.github.io/laravel-auto/)
 a Laravel helper package to make almost everything in your projects
 
+Wiki: [https://maikealame.github.io/laravel-auto/](https://maikealame.github.io/laravel-auto/)
+
 [![Latest Version](https://img.shields.io/github/release/maikealame/laravel-auto.svg?style=flat-square)](https://github.com/maikealame/laravel-auto/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/maikealame/laravel-auto.svg?style=flat-square)](https://packagist.org/packages/maikealame/laravel-auto)
