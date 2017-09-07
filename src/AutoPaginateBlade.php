@@ -51,7 +51,7 @@ class AutoPaginateBlade
 
     public static function pages($param){
         if(isset( $param[0] ))
-            return $param[0]->appends(Request::except('page'))->render();
+            if($param[0]) return $param[0]->appends(Request::except('page'))->render();
         return null;
     }
 
