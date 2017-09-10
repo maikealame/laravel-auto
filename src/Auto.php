@@ -91,7 +91,8 @@ class Auto implements AutoInterface
      */
     public function setDefaultField($column, $value){
         $filter = Request::get("filter");
-        if($filter) isset($filter[$column]) ?: Request::merge(["filter"=>array_merge( $filter ? $filter : [], [$column=>$value] )]);
+        if(!$filter) $filter = [];
+        isset($filter[$column]) ?: Request::merge(["filter"=>array_merge( $filter, [$column=>$value] )]);
     }
 
     /**
