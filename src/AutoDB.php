@@ -5,8 +5,11 @@ use Illuminate\Support\Facades\DB;
 
 class AutoDB
 {
-    function __construct(){
 
+    public $db;
+
+    function __construct(){
+        $this->db = DB::connection()->getPdo();
     }
 
     function select($query){
