@@ -51,13 +51,13 @@ trait AutoWhere
         // Or options
 
         if(isset($options["or"])){
-            $autowhere->_class->or($options["or"]);
+            $autowhere->or($options["or"]);
         }
 
         // Columns options
 
         if(isset($options["columns"])){
-            $autowhere->_class->columns($options["columns"]);
+            $autowhere->columns($options["columns"]);
         }
 
         // Having options
