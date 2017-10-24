@@ -1,5 +1,5 @@
 # [LaravelAuto](https://maikealame.github.io/laravel-auto/)
-a Laravel helper packageto make automated lists with filters, sorting and paging like no other. 
+a Laravel helper package to make automated lists with filters, sorting and paging like no other. 
 
 Wiki: [https://maikealame.github.io/laravel-auto/](https://maikealame.github.io/laravel-auto/)
 
