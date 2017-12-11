@@ -57,20 +57,24 @@ class AutoPaginateBlade
 
     public static function length($param){
         $lengths = Config::get("laravelauto.pages.length");
+        $default = Config::get("laravelauto.pages.default_length");
         $paginateObject = isset( $param[0] ) ? $param[0] : null;
-        $length = Request::has("length") ? Request::get("length") : ($paginateObject ? $paginateObject->perPage() : $lengths[0]);
+        $length = Request::has("length") ? Request::get("length") : ($paginateObject ? $paginateObject->perPage() : $default);
         $overwriteLength = Request::has("length") ? true : false;
         $total = $paginateObject ? $paginateObject->total() : $lengths[count($lengths)];
         $r = '
         <select class="pagination-length">';
         if( !in_array($length,$lengths)) {
             array_push($lengths,$length);
-            asort($lengths);
         }
+        if( !in_array($default,$lengths)) {
+            array_push($lengths,$default);
+        }
+        asort($lengths);
 
         $last = false;
         foreach($lengths as $l) {
-            $checked = ($overwriteLength && $length == $l) ? "selected" : null;
+            $checked = ($length == $l) ? "selected" : null;
             if ($total > $l && !$last) {
                 $last = false;
                 $r .= '<option value = "' . $l . '" '.$checked.'>
@@ -79,7 +83,7 @@ class AutoPaginateBlade
             }else{
                 if($last) continue;
                 else{
-                    $r .= '<option value = "' . $total . '" '.($overwriteLength ? "" : "selected").'>
+                    $r .= '<option value = "' . $total . '" '.$checked.'>
                     ' . $total . '
                     </option >';
                     $last = true;
