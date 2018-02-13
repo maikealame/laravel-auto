@@ -39,6 +39,7 @@ class AutoPaginateBlade
             function __autoLoadAsync(url){
                 $.get(url,{},function(data){
                     '.$replace.'
+                    $(window).resize();
                     var pagetitle = $(data).find("title").text() || $("title").text();';
         if($changeUrl) $r .= 'window.history.pushState({"html":data,"pageTitle":pagetitle}, pagetitle, url);';
         $r .=   '});
