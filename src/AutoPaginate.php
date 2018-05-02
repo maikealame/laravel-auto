@@ -22,7 +22,8 @@ trait AutoPaginate
     public function scopeAutoPaginate($query, $length = null)
     {
         if( is_null( $length ) ) $length = Config::get("laravelauto.pages.default_length");
-        if(!count( $query->getQuery()->havings ))
+        $havings = $query->getQuery()->havings ?: [];
+        if(!count( $havings ))
             return $query->paginate( Request::has("length") ? Request::get("length") : $length );
         else{
             $perPage = Request::has("length") ? Request::get("length") : $length;

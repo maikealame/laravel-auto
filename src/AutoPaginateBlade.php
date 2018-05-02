@@ -25,7 +25,9 @@ class AutoPaginateBlade
         if(!is_array($selector)) $selector = [$selector];
         $replace = "";
         foreach($selector as $s) {
-            $replace .= '$("body") . find("'.$s.'") . replaceWith($(data) . find("'.$s.'"));';
+            $replace .= '$("body").find("'.$s.'").each( function(k,el){ 
+                $(el).replaceWith($(data).find("'.$s.'").get(k));
+            });';
         }
         $changeUrl = isset($param[1]) ? $param[1] : true;
         $r = '<script>
