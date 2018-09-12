@@ -25,14 +25,14 @@ class AutoPaginateBlade
         if(!is_array($selector)) $selector = [$selector];
         $replace = "";
         foreach($selector as $s) {
-            $replace .= '$("body").find("'.$s.'").each( function(k,el){ 
+            $replace .= '$(document).find("'.$s.'").each( function(k,el){ 
                 $(el).replaceWith($(data).find("'.$s.'").get(k));
             });';
         }
         $changeUrl = isset($param[1]) ? $param[1] : true;
         $r = '<script>
         $(document).ready(function(){
-            $("body").on("click",".pagination a",function(e){
+            $(document).on("click",".pagination a",function(e){
                 e.preventDefault();
                 var url = $(this).attr("href");
                 __autoLoadAsync(url);
