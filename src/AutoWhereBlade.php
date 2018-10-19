@@ -118,7 +118,7 @@ class AutoWhereBlade
             var data = {};
             $("'.$inputs.'").each(function(i,e){
                 if($(e).length)
-                    if($(e).val() != ""){
+                    if($(e).val() != "" && $(e).val() != null){
                         var name = $(e).attr("data-name") ? $(e).attr("data-name") : $(e).attr("name");
                         if($(e).attr("data-type")) data[name] = {"type" :  $(e).attr("data-type"), "value" : $(e).val()};
                         else data[name] = $(e).val();
