@@ -45,7 +45,7 @@ class Auto implements AutoInterface
      * @return Auto
      */
     public function _class($class){
-        $this->_class->table( (new $class)->getTable() );
+        $this->_class->table( (new $class)->getConnection()->getDatabaseName() . "." . (new $class)->getTable() );
         return $this->getInstance();
     }
 
