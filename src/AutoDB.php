@@ -8,11 +8,12 @@ class AutoDB
 
     public $db;
 
-    function __construct(){
-        $this->db = DB::connection()->getPdo();
+    function __construct($pdo = null){
+        if(!$pdo) $this->db = DB::connection()->getPdo();
+        else $this->db = $pdo;
     }
 
     function select($query){
-        return DB::select($query);
+        return DB::setPdo($this->db)->select($query);
     }
 }
