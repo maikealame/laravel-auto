@@ -1,215 +1,189 @@
 <?php
-
 namespace Auto;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
-use Auto\Contracts\AutoInterface;
-use PhpAutoWhere\Where;
+use Auto\Exceptions\AutoWhereException;
+use Auto\Facades\Auto;
 
-class Auto implements AutoInterface
+/**
+ * AutoWhere trait.
+ */
+trait AutoWhere
 {
-    public $_core = "laravel";
-    public $_class;
-    public $_config;
-    public $_db;
-    public $_dbtype;
-    public $having = [];
-    public $fields = [];
+    private $autoTrash = null;
 
     /**
-     * Create a new AutoWhere instance.
-     */
-    public function __construct(){
-        $this->_db = new AutoDB();
-        $this->_config = (object) Config::get("laravelauto");
-        $this->_dbtype = $this->_config->db["type"];
-    }
-
-
-
-    /**
-     * Initialize module Where
-     */
-    public function where(){
-        $this->_class = new Where($this);
-        return $this->getInstance();
-    }
-
-    /**
-     * Set table by class
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array|null                         $where
      *
-     * @param $class
-     *
-     * @return Auto
+     * @return \Illuminate\Database\Query\Builder
      */
-    public function _class($class){
-        $this->_class->table( (new $class)->getConnection()->getDatabaseName() . "." . (new $class)->getTable() );
-        return $this->getInstance();
-    }
-
-    /**
-     * get quickly where sql without params
-     *
-     * @return string
-     */
-    public function get(){
-        $where = Request::get('filter') ? Request::get('filter') : [];
-        foreach($this->fields as $k=>$v){
-            $where[$k] = $v;
+    public function scopeAutoWhere($query, $options = [])
+    {
+        // Alias options
+        $autowhere = Auto::setPdo($query->getConnection()->getPdo())->where();
+        $qb = $query->getQuery();
+        $table = [];
+        if( is_array( $qb->joins ) ){
+            foreach ($qb->joins as $join){
+                if( strpos($join->table, " as ") !== false ){
+                    // Has Alias
+                    $table[explode( " as ", $join->table )[1]] = explode( " as ", $join->table )[0];
+                }else{
+                    $table[$join->table] = $join->table;
+                }
+            }
         }
-        $having = Request::get('filter_having') ? Request::get('filter_having') : [];
-        foreach($having as $k=>$v){ unset($where[$k]); }
-        $columns = Request::get('columns') ? Request::get('columns') : [];
-        return $this->_class->columns($columns)->render($where);
-    }
-
-    /**
-     * get quickly having sql without params
-     *
-     * @return string
-     */
-    public function getHaving(){
-        $where = Request::get('filter') ? Request::get('filter') : [];
-        foreach($this->fields as $k=>$v){
-            $where[$k] = $v;
+        if( strpos($qb->from, " as ") !== false ){
+            // Has Alias
+            $table[explode( " as ", $qb->from )[1]] = explode( " as ", $qb->from )[0];
+        }else{
+            // Hasn't Alias
+            if(empty($table))
+                $table = $qb->from; // where column
+            else
+                $table[$qb->from] = $qb->from; // where table.column
         }
-        $hav = Request::get('filter_having') ? Request::get('filter_having') : [];
-        $having = array_filter($where,function($key) use($hav){
-            return in_array($key,array_keys($hav));
-        },ARRAY_FILTER_USE_KEY);
-        $r = $this->_class->columns($hav)->render($having);
-        return  trim($r) == "true" ? "true" : $r;
+        $autowhere->table($table);
+//        dd( $table );
+
+
+        // Or options
+
+        if(isset($options["or"])){
+            $autowhere->or($options["or"]);
+        }
+
+        // Columns options
+
+        if(isset($options["columns"])){
+            $autowhere->columns($options["columns"]);
+        }
+
+        // Having options
+
+        if(isset($options["having"])){
+            $autowhere->having = array_merge($autowhere->having,$options["having"]);
+        }
+        if(Request::has("filter_having")){
+            $autowhere->having = array_merge($autowhere->having,Request::get("filter_having"));
+        }
+
+
+        // fix error of soft Delete -> column deleted_at not found
+        if( $this->forceDeleting !== null ){ // is using soft delete
+            if( empty( array_filter( // not using withTrashed()
+                $query->removedScopes(),
+                function($var,$key){
+                    return stristr( $var, "SoftDelet" ) ? $key : false;
+                }
+            ) ) ) {
+//                if ($this->getTableOrAlias($qb) != $this->getTable()) // table not equal table, maybe "table as t"
+                if(Request::has("show_disabled")){
+                    $query = $query->withTrashed();
+                }elseif(Request::has("only_disabled")){
+                    $query = $query->onlyTrashed();
+                }elseif(Request::has("trashed")){
+                    if(!is_null($this->autoTrash) ? $this->autoTrash : Request::get("trashed") == 0){ // without
+//                            $query = $query->withoutTrashed();
+                        $query = $query->withTrashed()->whereNull($this->getTableOrAlias($qb) . ".deleted_at");
+                    }
+                    if(!is_null($this->autoTrash) ? $this->autoTrash : Request::get("trashed") == 1){ // with
+//                            $query = $query->withTrashed();
+                        $query = $query->withTrashed();
+                    }
+                    if(!is_null($this->autoTrash) ? $this->autoTrash : Request::get("trashed") == 2){ // only
+//                            $query = $query->onlyTrashed();
+                        $query = $query->withTrashed()->whereNotNull($this->getTableOrAlias($qb) . ".deleted_at");
+                    }
+                }else
+                    $query = $query->withTrashed()->where($this->getTableOrAlias($qb) . ".deleted_at");
+            }
+        }
+
+        if(count($autowhere->having)) $query->havingRaw( $autowhere->getHaving() );
+
+        return $query->whereRaw( $autowhere->get() );
     }
 
 
-    /**
-     * set default field value for one column in the query
-     *
-     * @return void
-     */
-    public function setDefaultField($column, $value){
-        $filter = Request::get("filter");
-        if(!$filter) $filter = [];
-        isset($filter[$column]) ?: Request::merge(["filter"=>array_merge( $filter, [$column=>$value] )]);
+    private function getTableOrAlias($qb){
+        if( strpos($qb->from, " as ") !== false ){
+            // Has Alias
+            return explode( " as ", $qb->from )[1];
+        }else {
+            // Hasn't Alias
+            return $qb->from;
+        }
     }
 
     /**
      * set field value for one column in the query
      *
-     * @return void
+     * @return \Illuminate\Database\Query\Builder
      */
-    public function setField($column, $value){
-//        Request::has("filter") ?: Request::merge(["filter"=>[]]);
-//        Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
-        $this->fields = array_merge($this->fields,[$column=>$value]);
+    public function scopeAutoSetField($query, $column, $value, $type = null)
+    {
+        Auto::setField($column, $value);
+        if($type){
+            Auto::setColumn($column, $type);
+        }
+        return $query;
+    }
+
+    /**
+     * set default field value for one column in the query
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeAutoSetDefaultField($query, $column, $value, $type = null)
+    {
+        Auto::setDefaultField($column, $value);
+        if($type){
+            Auto::setColumn($column, $type);
+        }
+        return $query;
     }
 
     /**
      * set column type in the query
      *
-     * @return void
+     * @return \Illuminate\Database\Query\Builder
      */
-    public function setColumn($column, $type){
-        Request::has("columns") ?: Request::merge(["columns"=>[]]);
-        Request::merge(["columns"=>array_merge(Request::get("columns"),[$column=>$type])]);
+    public function scopeAutoSetColumn($query, $column, $type)
+    {
+        Auto::setColumn($column, $type);
+        return $query;
     }
 
     /**
      * set withTrashed soft delete
      *
-     * @return void
+     * @return \Illuminate\Database\Query\Builder
      */
-    public function withTrashed(){
-        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 1]);
+    public function scopeAutoWithTrashed($query){
+        $this->autoTrash = 1;
+        return $query;
     }
 
     /**
      * set withoutTrashed soft delete
      *
-     * @return void
+     * @return \Illuminate\Database\Query\Builder
      */
-    public function withoutTrashed(){
-        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 0]);
+    public function scopeAutoWithoutTrashed($query){
+        $this->autoTrash = 0;
+        return $query;
     }
 
 
     /**
      * set onlyTrashed soft delete
      *
-     * @return void
+     * @return \Illuminate\Database\Query\Builder
      */
-    public function onlyTrashed(){
-        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 2]);
+    public function scopeAutoOnlyTrashed($query){
+        $this->autoTrash = 2;
+        return $query;
     }
-
-
-
-    /**
-     * set ignore filter
-     *
-     * @return void
-     */
-    public function ignore($column){
-        Request::has("filter_ignore") ?: Request::merge(["filter_ignore"=>[]]);
-        Request::merge(["filter_ignore"=>array_push(Request::get("filter_ignore"),$column)]);
-    }
-
-
-    /**
-     * set having filter, excludes from 'where' on query
-     *
-     * @return void
-     */
-    public function having($column, $type = null){
-        Request::has("filter_having") ?: Request::merge(["filter_having"=>[]]);
-        Request::merge(["filter_having"=>
-            is_array($column) ?
-                array_merge(Request::get("filter_having"),$column) :
-                array_push(Request::get("filter_having"),[$column=>$type])
-        ]);
-    }
-
-
-    /**
-     * Generate chain methods
-     *
-     * @return Auto
-     */
-    public function getInstance(){
-        return $this;
-    }
-
-
-    /**
-     * Call functions in $_class or $this
-     *
-     * @return mixed
-     */
-    public function __call($method,$arguments) {
-        if($this->_class) {
-            if (method_exists($this->_class, $method)) {
-
-                return call_user_func_array(array($this->_class, $method), $arguments);
-
-            }elseif( $method == "or"){ // Keyword reserved of php
-
-                return call_user_func_array(array($this->_class, "_or"), $arguments);
-
-            }
-        }
-        if( $method == "class"){ // Keyword reserved of php
-
-            return call_user_func_array(array($this, "_class"), $arguments);
-
-        }
-
-        if (method_exists($this, $method)) {
-            return call_user_func_array(array($this, $method), $arguments);
-        }
-        return $this->getInstance();
-
-    }
-
 }
