@@ -9,7 +9,7 @@ Wiki: [https://maikealame.github.io/laravel-auto/](https://maikealame.github.io/
 
 
 You are free to create your own layout and style, there's no layout html/css included !
-This package only grants a very automated query in Eloquent.
+This package only grants a very automated query in Eloquent with Blade directives.
 
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/1.png)
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/2.png)
