@@ -1,6 +1,7 @@
 <?php
 namespace Auto;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Auto\Exceptions\AutoWhereException;
 use Auto\Facades\Auto;
