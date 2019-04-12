@@ -42,6 +42,14 @@ $notifications = Notification::select(Notification::table(true).".*", "notificat
 ---
 
 ```
+if (Request::has("filter")) {
+            if (isset(Request::get("filter")['keyword'])) {
+                $keyword = Request::get("filter")['keyword'];
+                Auto::setField("notifications.title", $keyword);
+                Auto::setField("notifications.description", $keyword);
+
+            }
+}
 $enterprises = Enterprises::from(Enterprises::table(true, "e"))
             ->select("e.*")
             ->leftJoin(EnterprisesIndicatorsEnterprises::table(true, "eie"),"eie.enterprise_id","=","e.id")
