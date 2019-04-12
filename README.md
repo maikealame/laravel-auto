@@ -12,9 +12,20 @@ You are free to create your own layout and style, there's no layout html/css inc
 This package only grants a very automated query in Eloquent with Blade directives.
 
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/1.png)
+
+---
+
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/2.png)
+
+---
+
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/3.png)
+
+---
+
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/4.png)
+
+---
 
 ```
 $notifications = Notification::select(Notification::table(true).".*", "notification_users.readed_at")
@@ -28,6 +39,8 @@ $notifications = Notification::select(Notification::table(true).".*", "notificat
 
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/5.png)
 
+---
+
 ```
 $enterprises = Enterprises::from(Enterprises::table(true, "e"))
             ->select("e.*")
@@ -37,6 +50,8 @@ $enterprises = Enterprises::from(Enterprises::table(true, "e"))
 ```
 
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/6.png)
+
+---
 
 See https://maikealame.github.io/laravel-auto/
 
