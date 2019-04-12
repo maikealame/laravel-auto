@@ -15,8 +15,27 @@ This package only grants a very automated query in Eloquent with Blade directive
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/2.png)
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/3.png)
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/4.png)
+
+```
+$notifications = Notification::select(Notification::table(true).".*", "notification_users.readed_at")
+            ->groupBy("notifications.id")
+            ->leftJoin(NotificationUser::table(true), "notifications.id", "=", "notification_users.notification_id")
+            ->leftJoin(NotificationRole::table(true), "notifications.id", "=", "notification_users.notification_id")
+            ->leftJoin(NotificationDepartment::table(true), "notifications.id", "=", "notification_users.notification_id")
+            ->autoWhere(['or' => ["notifications.title", "notifications.description"]])
+            ->autoSort(["notifications.updated_at", "desc"])->autoPaginate();
+```
+
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/5.png)
-![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/6_code.png)
+
+```
+$enterprises = Enterprises::from(Enterprises::table(true, "e"))
+            ->select("e.*")
+            ->leftJoin(EnterprisesIndicatorsEnterprises::table(true, "eie"),"eie.enterprise_id","=","e.id")
+            ->groupBy("e.id")
+            ->autoWhere()->autoSort()->autoPaginate();
+```
+
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/6.png)
 
 See https://maikealame.github.io/laravel-auto/
