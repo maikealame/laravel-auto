@@ -19,6 +19,13 @@ This package only grants a very automated query in Eloquent with Blade directive
 
 ---
 
+```
+$categories = Topic::from(Topic::table(true)." as t")
+            ->select("t.*")
+            ->leftJoin(Portal::table(true)." as p", "p.id","=","t.portal_id")
+            ->autoWhere()->autoSort()->autoPaginate();
+```
+
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/3.png)
 
 ---
