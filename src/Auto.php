@@ -62,13 +62,18 @@ class Auto implements AutoInterface
      * @return string
      */
     public function get(){
-        $where = Request::get('filter') ? Request::get('filter') : [];
+        $where = Request::get('filter', []);
+        $ignore = Request::get('filter_ignore', []);
+        foreach($where as $k=>$v){
+            if(in_array($k, $ignore))
+                unset($where[$k]);
+        }
         foreach($this->fields as $k=>$v){
             $where[$k] = $v;
         }
-        $having = Request::get('filter_having') ? Request::get('filter_having') : [];
+        $having = Request::get('filter_having', []);
         foreach($having as $k=>$v){ unset($where[$k]); }
-        $columns = Request::get('columns') ? Request::get('columns') : [];
+        $columns = Request::get('columns', []);
         return $this->_class->columns($columns)->render($where);
     }
 
@@ -159,8 +164,10 @@ class Auto implements AutoInterface
      * @return void
      */
     public function ignore($column){
-        Request::has("filter_ignore") ?: Request::merge(["filter_ignore"=>[]]);
-        Request::merge(["filter_ignore"=>array_push(Request::get("filter_ignore"),$column)]);
+        Request::has("filter_ignore") ?: Request::merge(["filter_ignore"=>array()]);
+        $array = Request::get("filter_ignore", []);
+        $array[] = $column;
+        Request::merge(["filter_ignore" => $array]);
     }
 
 
