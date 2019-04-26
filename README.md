@@ -26,9 +26,9 @@ This package only grants a very automated query in Eloquent with Blade directive
 ---
 
 ```
-$categories = Topic::from(Topic::table(true)." as t")
+$categories = Topic::from("topics as t")
             ->select("t.*")
-            ->leftJoin(Portal::table(true)." as p", "p.id","=","t.portal_id")
+            ->leftJoin("portals as p", "p.id","=","t.portal_id")
             ->autoWhere()->autoSort()->autoPaginate();
 ```
 
@@ -41,11 +41,11 @@ $categories = Topic::from(Topic::table(true)." as t")
 ---
 
 ```
-$notifications = Notification::select(Notification::table(true).".*", "notification_users.readed_at")
+$notifications = Notification::select("notifications.*", "notification_users.readed_at")
             ->groupBy("notifications.id")
-            ->leftJoin(NotificationUser::table(true), "notifications.id", "=", "notification_users.notification_id")
-            ->leftJoin(NotificationRole::table(true), "notifications.id", "=", "notification_users.notification_id")
-            ->leftJoin(NotificationDepartment::table(true), "notifications.id", "=", "notification_users.notification_id")
+            ->leftJoin("notifications_users", "notifications.id", "=", "notifications_users.notification_id")
+            ->leftJoin("notifications_roles", "notifications.id", "=", "notifications_roles.notification_id")
+            ->leftJoin("notifications_departments", "notifications.id", "=", "notifications_departments.notification_id")
             ->autoWhere(['or' => ["notifications.title", "notifications.description"]])
             ->autoSort(["notifications.updated_at", "desc"])->autoPaginate();
 ```
@@ -63,9 +63,9 @@ if (Request::has("filter")) {
 
             }
 }
-$enterprises = Enterprises::from(Enterprises::table(true, "e"))
+$enterprises = Enterprises::from("enterprises as e"))
             ->select("e.*")
-            ->leftJoin(EnterprisesIndicatorsEnterprises::table(true, "eie"),"eie.enterprise_id","=","e.id")
+            ->leftJoin("enterprise_indicators_enterprises as iei","eie.enterprise_id","=","e.id")
             ->groupBy("e.id")
             ->autoWhere()->autoSort()->autoPaginate();
 ```
