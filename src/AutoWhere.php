@@ -75,7 +75,7 @@ trait AutoWhere
         if( $this->forceDeleting !== null ){ // is using soft delete
             if( empty( array_filter( // not using withTrashed()
                 $query->removedScopes(),
-                function($var,$key){
+                function($var,$key = null){
                     return stristr( $var, "SoftDelet" ) ? $key : false;
                 }
             ) ) ) {
