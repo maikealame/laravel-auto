@@ -116,6 +116,11 @@ class Auto implements AutoInterface
 //        Request::has("filter") ?: Request::merge(["filter"=>[]]);
 //        Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
         $this->fields = array_merge($this->fields,[$column=>$value]);
+        Request::merge(["filter"=>array_merge(Request::get("filter",[]),[$column=>$value])]);
+    }
+    
+    public function getFields(){
+        return $this->fields;
     }
 
     /**
