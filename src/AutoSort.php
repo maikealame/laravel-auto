@@ -58,11 +58,11 @@ trait AutoSort
      */
     private function parseSortParameters(array $sortParameters)
     {
-        $column = array_get($sortParameters, 'sort');
+        $column = $sortParameters['sort'] ?: [] ;
         if (empty($column)) {
             return [null, null];
         }
-        $direction = array_get($sortParameters, 'order', []);
+        $direction = $sortParameters['order'] ?: [];
         if ( ! in_array($direction, ['asc', 'desc'])) {
             $direction = Config::get('laravelauto.sort.default_direction', 'asc');
         }
