@@ -41,6 +41,13 @@ $categories = Topic::from("topics as t")
 ---
 
 ```
+if (Request::has("filter")) {
+    if (isset(Request::get("filter")['keyword'])) {
+        $keyword = Request::get("filter")['keyword'];
+        Auto::setField("notifications.title", $keyword);
+        Auto::setField("notifications.description", $keyword);
+    }
+}
 $notifications = Notification::select("notifications.*", "notification_users.readed_at")
             ->groupBy("notifications.id")
             ->leftJoin("notifications_users", "notifications.id", "=", "notifications_users.notification_id")
@@ -55,14 +62,6 @@ $notifications = Notification::select("notifications.*", "notification_users.rea
 ---
 
 ```
-if (Request::has("filter")) {
-            if (isset(Request::get("filter")['keyword'])) {
-                $keyword = Request::get("filter")['keyword'];
-                Auto::setField("notifications.title", $keyword);
-                Auto::setField("notifications.description", $keyword);
-
-            }
-}
 $enterprises = Enterprises::from("enterprises as e"))
             ->select("e.*")
             ->leftJoin("enterprise_indicators_enterprises as iei","eie.enterprise_id","=","e.id")
