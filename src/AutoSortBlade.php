@@ -3,7 +3,6 @@
 namespace Auto;
 
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
 class AutoSortBlade
@@ -42,11 +41,11 @@ class AutoSortBlade
         $param = [
         ];
 
-        if (Input::get('sort') == $sortOriginal && in_array(Input::get('order'), ['asc', 'desc'])) {
+        if (Request::get('sort') == $sortOriginal && in_array(Request::get('order'), ['asc', 'desc'])) {
             $asc_suffix = Config::get('laravelauto.sort.asc_suffix', '-asc');
             $desc_suffix = Config::get('laravelauto.sort.desc_suffix', '-desc');
-            $icon = $icon . (Input::get('order') === 'asc' ? $asc_suffix : $desc_suffix);
-            $order = Input::get('order') === 'asc' ? 'desc' : '';
+            $icon = $icon . (Request::get('order') === 'asc' ? $asc_suffix : $desc_suffix);
+            $order = Request::get('order') === 'asc' ? 'desc' : '';
         } else {
             $icon = Config::get('laravelauto.sort.sortable_icon');
             $order = Config::get('laravelauto.sort.default_order_unsorted', 'asc');
