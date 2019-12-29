@@ -116,9 +116,10 @@ class Auto implements AutoInterface
 //        Request::has("filter") ?: Request::merge(["filter"=>[]]);
 //        Request::merge(["filter"=>array_merge(Request::get("filter"),[$column=>$value])]);
         $this->fields = array_merge($this->fields,[$column=>$value]);
-        Request::merge(["filter"=>array_merge(Request::get("filter",[]),[$column=>$value])]);
+        $f = Request::get("filter",[]);
+        Request::merge(["filter"=>array_merge($f,[$column=>$value])]);
     }
-    
+
     public function getFields(){
         return $this->fields;
     }
@@ -130,7 +131,8 @@ class Auto implements AutoInterface
      */
     public function setColumn($column, $type){
         Request::has("columns") ?: Request::merge(["columns"=>[]]);
-        Request::merge(["columns"=>array_merge(Request::get("columns"),[$column=>$type])]);
+        $c = Request::get("columns");
+        Request::merge(["columns"=>array_merge($c,[$column=>$type])]);
     }
 
     /**
@@ -139,7 +141,8 @@ class Auto implements AutoInterface
      * @return void
      */
     public function withTrashed(){
-        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 1]);
+        $t = Request::get("trashed");
+        Request::merge(["trashed"=> Request::has("trashed") ? $t : 1]);
     }
 
     /**
@@ -148,7 +151,8 @@ class Auto implements AutoInterface
      * @return void
      */
     public function withoutTrashed(){
-        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 0]);
+        $t = Request::get("trashed");
+        Request::merge(["trashed"=> Request::has("trashed") ? $t : 0]);
     }
 
 
@@ -158,7 +162,8 @@ class Auto implements AutoInterface
      * @return void
      */
     public function onlyTrashed(){
-        Request::merge(["trashed"=> Request::has("trashed") ? Request::get("trashed") : 2]);
+        $t = Request::get("trashed");
+        Request::merge(["trashed"=> Request::has("trashed") ? $t : 2]);
     }
 
 
@@ -183,10 +188,11 @@ class Auto implements AutoInterface
      */
     public function having($column, $type = null){
         Request::has("filter_having") ?: Request::merge(["filter_having"=>[]]);
+        $fh = Request::get("filter_having");
         Request::merge(["filter_having"=>
             is_array($column) ?
-                array_merge(Request::get("filter_having"),$column) :
-                array_push(Request::get("filter_having"),[$column=>$type])
+                array_merge($fh,$column) :
+                array_merge($fh,[$column=>$type])
         ]);
     }
 
