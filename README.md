@@ -13,9 +13,15 @@ Wiki: [https://maikealame.github.io/laravel-auto/](https://maikealame.github.io/
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/maikealame/laravel-auto.svg?style=flat-square)](https://packagist.org/packages/maikealame/laravel-auto)
 
+---
 
-You are free to create your own layout and style, there's no layout html/css included !
-This package only grants a very automated query in Eloquent with Blade directives.
+**You are free to create your own layout and style, there's no layout html/css included !**
+
+**This package only grants a very automated query in Eloquent with Blade directives.**
+
+You can use it either without Blade directives, like Vue.js and React, but you need to implement manually the calls to backend and layout rendering.
+
+---
 
 ![table image](https://raw.githubusercontent.com/maikealame/laravel-auto/master/docs/images/examples/1.png)
 
