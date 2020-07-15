@@ -1,6 +1,6 @@
 <div align="center">
     <a href="https://maikealame.github.io/laravel-auto/">
-        <img src="https://github.com/maikealame/laravel-auto/raw/master/docs/images/logo-tp.png" height="128">
+        <img src="https://github.com/maikealame/laravel-auto/raw/master/docs/images/logo-tp.png" height="128" alt="logo">
         <h1>Laravel Auto</h1>
     </a>
 </div>
