@@ -88,7 +88,7 @@ See https://maikealame.github.io/laravel-auto/
 - [What is necessary](https://maikealame.github.io/laravel-auto#what-is-necessary)
 - [Wiki](https://maikealame.github.io/laravel-auto#wiki)
 - [Examples](https://maikealame.github.io/laravel-auto#example)
-- [How works](https://maikealame.github.io/laravel-auto#how-works)
+- [How it works](https://maikealame.github.io/laravel-auto#how-works)
 1. [View](https://maikealame.github.io/laravel-auto#view)
 2. [Controller](https://maikealame.github.io/laravel-auto#controller)
 3. [Model](https://maikealame.github.io/laravel-auto#model)
