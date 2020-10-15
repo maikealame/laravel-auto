@@ -32,7 +32,7 @@ class AutoPaginateBlade
         $changeUrl = isset($param[1]) ? $param[1] : true;
         $r = '<script>
         $(document).ready(function(){
-            $(document).on("click",'.(isset($param[2]) ? $param[2] : ".pagination a").',function(e){
+            $(document).on("click","'.(isset($param[2]) ? $param[2] : ".pagination a").'",function(e){
                 e.preventDefault();
                 var url = $(this).attr("href");
                 __autoLoadAsync(url);
