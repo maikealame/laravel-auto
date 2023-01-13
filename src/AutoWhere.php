@@ -22,7 +22,8 @@ trait AutoWhere
     public function scopeAutoWhere($query, $options = [])
     {
         // Alias options
-        $autowhere = Auto::setPdo(DB::connection($query->getConnection()->getConfig()['driver'])->getPdo())->where();
+        $connConfig = $query->getConnection()->getConfig();
+        $autowhere = Auto::setPdo(DB::connection($connConfig['name'] ? $connConfig['name'] : $connConfig['drive'])->getPdo())->where();
         $qb = $query->getQuery();
         $table = [];
         if( is_array( $qb->joins ) ){
